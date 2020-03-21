@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 Route::get('/author', function () {
     return view('author');
 });
@@ -22,7 +23,3 @@ Route::get('author/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
 
 Route::get('/logout', 'SessionsController@destroy');
-
-
-
-
