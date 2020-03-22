@@ -8,5 +8,5 @@
 	<p>{{substr($article->body,0,20)}} ... <a href="{{$article->category}}/article/{{$article->id}}">Read more</a></p>
 	<hr>
 @endforeach
-<a href="/subscribe"><button>Subscribe</button></a>
+<a href="/subscribe" target="_blank"><button>Subscribe</button></a>
 @endsection
