@@ -15,11 +15,11 @@ class RegistrationController extends Controller
 
     public function store()
     {
-        $user = User::create([
-        'name' => request('name'),
-        'email' => request('email'),
-        'password' => bcrypt(request('password'))
-        ]);
+        $user = User::create([request()->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'min:3'],
+            'password' => ['required', 'min:3']
+        ]));
         auth()->login($user);
         return redirect('author/article/create');
     }

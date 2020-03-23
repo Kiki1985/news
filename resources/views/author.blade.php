@@ -1,10 +1,12 @@
-@extends('layout')
-@section('title', 'News')
-@section('content')
-<h1>News</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Author</title>
+</head>
+<body>
+<h3>Author</h3>
 
  <a href="/author/login"><button>Login</button></a>
  <a href="/author/register"><button>Register</button></a>
 </body>
 </html>
-@endsection

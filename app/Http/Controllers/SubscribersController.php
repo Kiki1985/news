@@ -15,10 +15,10 @@ class SubscribersController extends Controller
 
     public function store()
     {
-        Subscriber::create([
-            'name' => request('name'),
-            'email' => request('email')
-        ]);
+        Subscriber::create(request()->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'min:3']
+        ]));
         return back();
     }
 }

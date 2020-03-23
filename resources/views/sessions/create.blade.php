@@ -1,6 +1,9 @@
-@extends('layout')
-@section('title', 'Log in')
-@section('content')
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log in</title>
+</head>
+<body>
 <h3>Author log in</h3>
 <form method="POST" action="/login">
     @csrf
@@ -8,4 +11,5 @@
 	<input type="password" name="password" placeholder="Password"><br>
 	<button>Submit</button><br><br>
 </form>
-@endsection
+</body>
+</html>
