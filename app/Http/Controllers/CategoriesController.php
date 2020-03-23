@@ -8,10 +8,14 @@ use App\Article;
 
 class CategoriesController extends Controller
 {
-    public function show()
+    public function show($category)
     {
-        $category = request('category');
+    	$categories = [
+            'sport',
+            'economy',
+            'politic'
+        ];
         $articles = Article::where('category', $category)->orderBy('created_at', 'desc')->get();
-        return view('category.show', compact('category', 'articles'));
+        return view('category.show', compact('category', 'articles', 'categories'));
     }
 }

@@ -10,8 +10,13 @@ class ArticlesController extends Controller
 {
     public function index()
     {
+        $categories = [
+            'sport',
+            'economy',
+            'politic'
+        ];
         $articles = Article::orderBy('created_at', 'desc')->get();
-        return view('index', compact('articles'));
+        return view('index', compact('articles', 'categories'));
     }
 
     public function create()
@@ -33,7 +38,12 @@ class ArticlesController extends Controller
 
     public function show($category, $id)
     {
+        $categories = [
+            'sport',
+            'economy',
+            'politic'
+        ];
         $article = Article::findOrfail($id);
-        return view('articles.show', compact('article'));
+        return view('articles.show', compact('article', 'categories'));
     }
 }
