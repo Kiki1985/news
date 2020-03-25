@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Subscriber;
 
-use App\Mail\ArticleCreated;
+use App\Jobs\SendArticleCreatedJob;
 
 class Article extends Model
 {
@@ -19,14 +19,9 @@ class Article extends Model
     protected static function boot()
     {
     	parent::boot();
-
-    	static::created(function($article){
+        static::created(function($article){
     		$subscribers = Subscriber::all();
-    		foreach($subscribers as $subscriber){
-        		\Mail::to($subscriber->email)->send(
-            		new ArticleCreated($article)
-        		);
-        	}
-    	});
+            SendArticleCreatedJob::dispatch($article, $subscribers);
+        });
     }
 }

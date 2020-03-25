@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Subscriber;
+
+
 class SubscribersController extends Controller
 {
     public function create()
@@ -17,6 +20,6 @@ class SubscribersController extends Controller
             'name' => ['required', 'min:3'],
             'email' => ['required', 'min:3']
         ]));
-        return back();
+        return "You are now subscribed.";
     }
 }

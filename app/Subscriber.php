@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Mail\SubscriberRegistrated;
+use App\Jobs\SendSubscriberRegistratedEmailJob;
 
 class Subscriber extends Model
 {
@@ -13,11 +13,8 @@ class Subscriber extends Model
     protected static function boot()
     {
     	parent::boot();
-
-    	static::created(function($subscriber){
-        	\Mail::to($subscriber->email)->send(
-        		new SubscriberRegistrated($subscriber)
-        	);
+        static::created(function($subscriber){
+            SendSubscriberRegistratedEmailJob::dispatch($subscriber);
     	});
     }
 }
