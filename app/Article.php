@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Subscriber;
 
-use App\Jobs\SendArticleCreatedJob;
+use App\Events\ArticleCreated;
+
+use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
@@ -20,8 +20,8 @@ class Article extends Model
     {
     	parent::boot();
         static::created(function($article){
-    		$subscribers = Subscriber::all();
-            SendArticleCreatedJob::dispatch($article, $subscribers);
-        });
+        	$subscribers = Subscriber::all();
+            event(new ArticleCreated($article, $subscribers));
+    	});
     }
 }

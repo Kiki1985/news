@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Jobs\SendEmailArticleCreatedJob;
 use App\Mail\SubscriberRegistrated;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

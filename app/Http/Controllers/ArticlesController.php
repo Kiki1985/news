@@ -33,7 +33,7 @@ class ArticlesController extends Controller
             'body' => ['required', 'min:3']
         ]);
 
-        Article::create([
+        $article = Article::create([
             'category' => request('category'),
             'title' => request('title'),
             'body' => request('body'),
