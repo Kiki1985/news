@@ -10,13 +10,9 @@ class Subscriber extends Model
 {
     protected $guarded = [];
 
-    protected static function boot()
-    {
-    	parent::boot();
-        static::created(function($subscriber){
-            event(new SubscriberRegistrated($subscriber));
-    	});
-    }
+    protected $dispatchesEvents = [
+    	'created' =>SubscriberRegistrated::class
+    ];
 }
 
 	
