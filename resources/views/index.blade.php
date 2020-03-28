@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title', 'News')
 @section('content')
+@yield('categories')
  
 <h3>Latest News</h3>
 @foreach($articles as $article)

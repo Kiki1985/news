@@ -13,11 +13,10 @@ class SessionsController extends Controller
 
     public function store()
     {
-    	if(! auth()->attempt(request(['name', 'password'])))
+    	if(! auth()->attempt(request(['fName', 'lName', 'password'])))
     	{
-    		return back()->withErrors([
-    			'message' => 'Please check your credentials and try again.'
-    		]);
+    		return back()->with('message','Please check your credentials and try again.');
+
     	}return redirect('author/article/create');
     }
 

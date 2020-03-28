@@ -4,7 +4,11 @@
 	<title>Subscribe</title>
 </head>
 <body>
+
 	<div style="text-align: center; margin:auto; width: 50%">
+	@if (session('message'))
+    	<p>{{ session('message') }}
+	@else
 		<b><i>Subscribe to news</i></b>
 		<form method="POST" action="/subscribe">
 			@csrf

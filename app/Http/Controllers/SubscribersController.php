@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Subscriber;
 
-//use App\Events\SubscriberRegistrated;
+use App\Notifications\SubscriberRegistrated;
 
 class SubscribersController extends Controller
 {
@@ -21,8 +21,6 @@ class SubscribersController extends Controller
             'name' => ['required', 'min:3'],
             'email' => ['required', 'min:3']
         ]));
-
-        //event(new SubscriberRegistrated($subscriber));
-        return "You are now subscribed.";
+        return back()->with('message','You are now subscribed.');
     }
 }

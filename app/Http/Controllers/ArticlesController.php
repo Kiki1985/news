@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Article;
 
+use App\User;
+
 class ArticlesController extends Controller
 {
     public function index()
@@ -26,20 +28,9 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(User $user)
     {
-        request()->validate([
-            'title' => ['required', 'min:3'],
-            'body' => ['required', 'min:3']
-        ]);
-
-        $article = Article::create([
-            'category' => request('category'),
-            'title' => request('title'),
-            'body' => request('body'),
-            'user_id' => auth()->user()->id
-        ]);
-    
+        $user->addArticle(request('category'), request('title'), request('body'));
         return back();
     }
 

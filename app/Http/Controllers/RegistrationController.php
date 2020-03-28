@@ -13,10 +13,11 @@ class RegistrationController extends Controller
         return view('registration.create');
     }
 
-    public function store()
-    {
-         $user = User::create([
-            'name' => request('name'),
+    public function store(Request $request)
+    {   
+        $user = User::create([
+            'fName' => request('fName'),
+            'lName' => request('lName'),
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
