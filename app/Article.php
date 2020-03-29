@@ -24,4 +24,9 @@ class Article extends Model
             event(new ArticleCreated($article, $subscribers));
     	});
     }
+
+    public static function category($category)
+    {
+        return static::where('category', $category)->get();
+    }
 }

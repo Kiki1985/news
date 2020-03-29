@@ -7,11 +7,16 @@ Route::get('/author', function () {
 });
 
 Route::get('/', 'ArticlesController@index');
-Route::get('author/article/create', 'ArticlesController@create');
-Route::get('/{category}/article/{id}', 'ArticlesController@show');
-Route::post('/article', 'ArticlesController@store');
 
 Route::get('category/{category}', 'CategoriesController@show');
+
+
+Route::get('author/article/create', 'ArticlesController@create');
+
+Route::get('/{category}/article/{id}', 'ArticlesController@show');
+
+Route::post('/article', 'ArticlesController@store');
+
 
 Route::get('author/register', 'RegistrationController@create');
 Route::post('register', 'RegistrationController@store');

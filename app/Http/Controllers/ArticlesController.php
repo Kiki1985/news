@@ -8,15 +8,13 @@ use App\Article;
 
 use App\User;
 
+use App\Category;
+
 class ArticlesController extends Controller
 {
     public function index()
     {
-        $categories = [
-            'sport',
-            'economy',
-            'politic'
-        ];
+        $categories = Category::all();
         $articles = Article::orderBy('created_at', 'desc')->get();
         return view('index', compact('articles', 'categories'));
     }
@@ -36,12 +34,7 @@ class ArticlesController extends Controller
 
     public function show($category, $id)
     {
-        $categories = [
-            'sport',
-            'economy',
-            'politic'
-        ];
         $article = Article::findOrfail($id);
-        return view('articles.show', compact('article', 'categories'));
+        return view('articles.show', compact('article'));
     }
 }

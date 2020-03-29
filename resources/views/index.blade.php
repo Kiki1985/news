@@ -1,13 +1,8 @@
 @extends('layout')
 @section('title', 'News')
 @section('content')
-@yield('categories')
- 
-<h3>Latest News</h3>
-@foreach($articles as $article)
-	<p><a href="{{$article->category}}/article/{{$article->id}}">{{$article->title}}</a></p>
-	<p>{{substr($article->body,0,20)}} ... <a href="{{$article->category}}/article/{{$article->id}}">Read more</a></p>
-	<hr>
-@endforeach
+@include('categories.categories')
+ <h3>Latest News</h3>
+@include('articles.article')
 <a href="/subscribe" target="_blank"><button>Subscribe</button></a>
 @endsection
