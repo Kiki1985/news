@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Log in</title>
-</head>
-<body>
+@extends('layouts.master')
+@section('title', 'Log in')
+@section('content')
 <h3>Author log in</h3>
 <form method="POST" action="/login">
     @csrf
@@ -15,5 +12,4 @@
 @if (session('message'))
     <p>{{ session('message') }}
 @endif
-</body>
-</html>
+@endsection

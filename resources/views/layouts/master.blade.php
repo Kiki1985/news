@@ -5,7 +5,6 @@
 </head>
 <body>
 	<div style="text-align: center; margin:auto; width: 50%">
-	
 		@yield('content')
 	</div>
 </body>

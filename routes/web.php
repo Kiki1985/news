@@ -2,28 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/author', function () {
-    return view('author');
+Route::get('/authors', function () {
+    return view('authors');
 });
 
 Route::get('/', 'ArticlesController@index');
 
-Route::get('category/{category}', 'CategoriesController@show');
+Route::get('categories/{category}', 'CategoriesController@show');
+
+Route::get('/categories/{category}/articles/{article}', 'ArticlesController@show');
 
 
-Route::get('author/article/create', 'ArticlesController@create');
-
-Route::get('/{category}/article/{id}', 'ArticlesController@show');
-
-Route::post('/article', 'ArticlesController@store');
+Route::get('authors/articles/create', 'ArticlesController@create');
 
 
-Route::get('author/register', 'RegistrationController@create');
+Route::post('/articles', 'ArticlesController@store');
+
+
+Route::get('authors/register', 'RegistrationController@create');
+
 Route::post('register', 'RegistrationController@store');
 
-Route::get('author/login', 'SessionsController@create');
+Route::get('authors/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
 Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/subscribe', 'SubscribersController@create');
-Route::post('/subscribe', 'SubscribersController@store');
+Route::get('/subscribers', 'SubscribersController@create');
+Route::post('/subscribers', 'SubscribersController@store');

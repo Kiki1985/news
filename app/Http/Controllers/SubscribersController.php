@@ -12,14 +12,14 @@ class SubscribersController extends Controller
 {
     public function create()
     {
-        return view('subscribe');
+        return view('subscribers');
     }
 
     public function store()
     {
         $subscriber = Subscriber::create(request()->validate([
-            'name' => ['required', 'min:3'],
-            'email' => ['required', 'min:3']
+            'name' => ['required', 'min:3', 'max:25'],
+            'email' => ['required', 'min:3', 'max:25']
         ]));
         return back()->with('message','You are now subscribed.');
     }

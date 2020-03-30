@@ -6,14 +6,16 @@ use App\Subscriber;
 
 use App\Events\ArticleCreated;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Article extends Model
 {
-    protected $guarded = [];
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     protected static function boot()
@@ -23,10 +25,5 @@ class Article extends Model
         	$subscribers = Subscriber::all();
             event(new ArticleCreated($article, $subscribers));
     	});
-    }
-
-    public static function category($category)
-    {
-        return static::where('category', $category)->get();
     }
 }

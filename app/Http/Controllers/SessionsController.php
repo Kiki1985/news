@@ -17,13 +17,13 @@ class SessionsController extends Controller
     	{
     		return back()->with('message','Please check your credentials and try again.');
 
-    	}return redirect('author/article/create');
+    	}return redirect('authors/articles/create');
     }
 
     public function destroy()
     {
         auth()->logout();
 
-        return redirect('author');
+        return redirect('authors');
     }
 }

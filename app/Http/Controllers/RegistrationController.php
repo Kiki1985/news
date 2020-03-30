@@ -15,13 +15,19 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {   
+        $this->validate(request(), [
+            'firstName' => 'required|min:3|max:25',
+            'lastName' => 'required|min:3|max:25',
+            'email' => 'required|min:3|max:25',
+            'password' => 'required|min:3|max:25'
+        ]);
         $user = User::create([
-            'fName' => request('fName'),
-            'lName' => request('lName'),
+            'fName' => request('firstName'),
+            'lName' => request('lastName'),
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
         auth()->login($user);
-        return redirect('author/article/create');
+        return redirect('authors/articles/create');
     }
 }
