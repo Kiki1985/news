@@ -33,7 +33,7 @@ class ArticlesController extends Controller
         return back();
     }
 
-    public function show($category, Article $article)
+    public function show(Article $article)
     {
         return view('articles.show', compact('article'));
     }

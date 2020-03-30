@@ -1,3 +1,3 @@
-@foreach($categories as $categ)
-	<a href="/categories/{{$categ->id}}"><button>{{strtoupper($categ->category)}}</button></a>
+@foreach($categories as $category)
+	<a href="/categories/{{$category->id}}"><button>{{strtoupper($category->category)}}</button></a>
 @endforeach

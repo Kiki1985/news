@@ -10,7 +10,7 @@ Route::get('/', 'ArticlesController@index');
 
 Route::get('categories/{category}', 'CategoriesController@show');
 
-Route::get('/categories/{category}/articles/{article}', 'ArticlesController@show');
+Route::get('/articles/{article}', 'ArticlesController@show');
 
 
 Route::get('authors/articles/create', 'ArticlesController@create');

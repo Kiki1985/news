@@ -4,7 +4,7 @@
 @include('layouts.categories')
 <h3>Latest News</h3>
 @foreach($articles as $article)
-	<p><a href="/categories/{{$article->category->category}}/articles/{{$article->id}}">{{$article->title}}</a></p>
+	<p><a href="/articles/{{$article->id}}">{{$article->title}}</a></p>
 	<p>{{substr($article->body,0,20)}} ... <a href="/categories/{{$article->category->category}}/articles/{{$article->id}}">Read more</a></p>
 	<hr>
 @endforeach
