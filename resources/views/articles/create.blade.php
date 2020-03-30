@@ -13,9 +13,12 @@
 @endforeach
 </select><br><br>
 <input type="text" name="title" placeholder="Article title" required value="{{old('title')}}"><br><br>
-<textarea name="body" placeholder="Text of an article" required>{{old('body')}}</textarea><br><br>
+<textarea name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
 <button type="submit">Create</button>
 </form><br>
+@if(count($errors))
+    @include('layouts.errors')
+@endif
 
 @foreach($articles as $article)
 <p>{{$article->title}}</p>

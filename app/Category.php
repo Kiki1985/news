@@ -8,4 +8,14 @@ class Category extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    public function addArticle($categoryId, $title, $body)
+    {
+        return Article::create([
+            'category_id' => $categoryId,
+            'title' => $title,
+            'body' => $body,
+            'user_id' => auth()->id()
+        ]);
+    }
 }

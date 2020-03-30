@@ -12,6 +12,10 @@ use App\Category;
 
 class ArticlesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
     public function index()
     {
         $categories = Category::all();
@@ -27,9 +31,14 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function store(User $user)
+    public function store(Category $category)
     {
-        $user->addArticle(request('categoryId'), request('title'), request('body'));
+        $this->validate(request(),[
+            'title' => ['required', 'min:3', 'max:25'],
+            'body' => ['required', 'min:3', 'max:255']
+        ]);
+        
+        $category->addArticle(request('categoryId'), request('title'), request('body'));
         return back();
     }
 

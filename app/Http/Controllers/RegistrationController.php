@@ -18,8 +18,8 @@ class RegistrationController extends Controller
         $this->validate(request(), [
             'firstName' => 'required|min:3|max:25',
             'lastName' => 'required|min:3|max:25',
-            'email' => 'required|min:3|max:25',
-            'password' => 'required|min:3|max:25'
+            'email' => 'required|email|min:3|max:25',
+            'password' => 'required|confirmed|min:3|max:25'
         ]);
         $user = User::create([
             'fName' => request('firstName'),
