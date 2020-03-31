@@ -7,7 +7,7 @@
 <form method="POST" action="/articles">
     @csrf
 <label for="category">Select a category:</label>
-<select name="categoryId" id="category">
+<select name="category_id" >
 @foreach($categories as $category)
 	<option value="{{$category->id}}">{{$category->category}}</option>
 @endforeach

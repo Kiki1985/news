@@ -31,14 +31,15 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function store(Category $category)
+    public function store()
     {
         $this->validate(request(),[
             'title' => ['required', 'min:3', 'max:25'],
             'body' => ['required', 'min:3', 'max:255']
         ]);
-        
-        $category->addArticle(request('categoryId'), request('title'), request('body'));
+        auth()->user()->publish(
+            new Article(request(['category_id', 'title', 'body']))
+        );
         return back();
     }
 
