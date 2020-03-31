@@ -11,9 +11,5 @@
 	<input type="password" name="password_confirmation" id="password_confirmation" placeholder="Password Confirmation" required ><br>
 	<button>Submit</button><br><br>
 </form>
-
-@if(count($errors))
 @include('layouts.errors')
-@endif
-
 @endsection

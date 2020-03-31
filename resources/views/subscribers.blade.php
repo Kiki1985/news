@@ -11,10 +11,7 @@
         <input type="email" name="email" placeholder="email" required value="{{old('email')}}"><br>
         <button>Submit</button>
     </form>
-
-    @if(count($errors))
-    @include('layouts.errors')
-    @endif
+@include('layouts.errors')
 @endif
 @endsection
 

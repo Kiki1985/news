@@ -16,10 +16,7 @@
 <textarea name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
 <button type="submit">Create</button>
 </form><br>
-@if(count($errors))
-    @include('layouts.errors')
-@endif
-
+@include('layouts.errors')
 @foreach($articles as $article)
 <p>{{$article->title}}</p>
 @endforeach
