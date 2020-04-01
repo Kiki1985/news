@@ -13,6 +13,9 @@ Route::get('/categories/{category}', 'CategoriesController@show');
 Route::get('/articles/{article}', 'ArticlesController@show');
 
 
+Route::get('/category/{tag}', 'TagsController@index');
+
+
 Route::get('/authors/articles/create', 'ArticlesController@create');
 
 

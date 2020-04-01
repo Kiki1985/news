@@ -26,4 +26,9 @@ class Article extends Model
             event(new ArticleCreated($article, $subscribers));
     	});
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
