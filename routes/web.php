@@ -15,7 +15,7 @@ Route::get('/authors/articles/create', 'ArticlesController@create');
 Route::post('/articles', 'ArticlesController@store');
 
 
-Route::get('/category/{tag}', 'TagsController@index');
+Route::get('/categories/{category}', 'CategoriesController@index');
 
 
 Route::get('/register', 'RegistrationController@create');

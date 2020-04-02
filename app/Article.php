@@ -22,8 +22,8 @@ class Article extends Model
     	});
     }
 
-    public function tags()
+    public function categories()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Category::class);
     }
 }

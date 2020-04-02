@@ -2,8 +2,8 @@
 @section('title', 'News')
 @section('content')
 <a href="/"><button>all news</button></a>
-@foreach($tags as $tag)
-	<a href="/category/{{$tag->name}}"><button>{{$tag->name}}</button></a>
+@foreach($categories as $category)
+	<a href="/categories/{{$category}}"><button>{{$category}}</button></a>
 @endforeach
 @foreach($articles as $article)
 	@include('layouts.articles')

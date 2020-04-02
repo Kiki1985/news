@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Tag extends Model
+class Category extends Model
 {
     public function articles()
     {

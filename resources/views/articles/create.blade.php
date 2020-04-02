@@ -7,9 +7,9 @@
 <form method="POST" action="/articles">
     @csrf
 <label for="category">Select a category:</label>
-<select name="tag">
-@foreach($options as $option)
-	<option value="{{$option}}">{{$option}}</option>
+<select name="category">
+@foreach($categories as $category)
+	<option value="{{$category}}">{{$category}}</option>
 @endforeach
 
 </select><br><br>

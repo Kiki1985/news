@@ -2,9 +2,9 @@
 @section('title', $article->title)
 @section('content')
 <h3>{{$article->title}}</h3>
-@if(count($article->tags))
-    @foreach($article->tags as $tag)
-        <p>Category: <a href="/category/{{$tag->name}}">{{$tag->name}}</a></p>
+@if(count($article->categories))
+    @foreach($article->categories as $category)
+        <p>Category: <a href="/categories/{{$category->name}}">{{$category->name}}</a></p>
     @endforeach
 @endif
 <p>{{$article->body}}</p>

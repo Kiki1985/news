@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Article;
 
-use App\Tag;
+use App\Category;
 
 class ArticlesController extends Controller
 {
@@ -16,16 +16,16 @@ class ArticlesController extends Controller
     }
     public function index() 
     {
-        $tags = Tag::all();
+        $categories = Category::has('articles')->pluck('name');
         $articles = Article::latest()->get();
-        return view('index', compact('articles', 'tags'));
+        return view('index', compact('articles', 'categories'));
     }
 
     public function create()
     {
         return view('articles.create', [
             'articles' => auth()->user()->articles,
-            'options' =>['sport', 'politic', 'economy']
+            'categories' =>['sport', 'politic', 'economy']
         ]);
     }
 
@@ -42,17 +42,17 @@ class ArticlesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        $tag = $request->input("tag");
+        $category = $request->input("category");
         
-        if(Tag::where('name', $tag)->exists())
+        if(Category::where('name', $category)->exists())
         {
-            $tagId = Tag::where('name', $tag)->value('id');
+            $categoryId = Category::where('name', $category)->value('id');
         }else{
-            $tag = Tag::create([ "name" => $tag]);
-            $tagId = $tag->id;
+            $category = Category::create([ "name" => $category]);
+            $categoryId = $category->id;
         }
 
-        $article->tags()->attach($tagId);
+        $article->categories()->attach($categoryId);
        
         return back();
     }
