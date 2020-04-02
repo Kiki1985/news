@@ -6,13 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Article;
 
-use App\User;
-
-use App\Category;
-
 use App\Tag;
-
-use App\DB;
 
 class ArticlesController extends Controller
 {
