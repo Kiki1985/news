@@ -25,8 +25,7 @@ class ArticlesController extends Controller
     public function create()
     {
         return view('articles.create', [
-            'articles' => auth()->user()->articles,
-            'categories' => Category::all()
+            'articles' => auth()->user()->articles
         ]);
     }
 
