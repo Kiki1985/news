@@ -7,10 +7,10 @@
 <form method="POST" action="/articles">
     @csrf
 <label for="category">Select a category:</label>
-<select name="tag_id">
-	<option value="1">Sport</option>
-	<option value="2">Politic</option>
-	<option value="3">Economy</option>
+<select name="tag">
+@foreach($options as $option)
+	<option value="{{$option}}">{{$option}}</option>
+@endforeach
 
 </select><br><br>
 <input type="text" name="title" placeholder="Article title" required value="{{old('title')}}"><br><br>

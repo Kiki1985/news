@@ -24,7 +24,8 @@ class ArticlesController extends Controller
     public function create()
     {
         return view('articles.create', [
-            'articles' => auth()->user()->articles
+            'articles' => auth()->user()->articles,
+            'options' =>['sport', 'politic', 'economy']
         ]);
     }
 
@@ -40,8 +41,18 @@ class ArticlesController extends Controller
             'body' => request('body'),
             'user_id' => auth()->id()
         ]);
+
+        $tag = $request->input("tag");
         
-        $article->tags()->attach(request('tag_id'));
+        if(Tag::where('name', $tag)->exists())
+        {
+            $tagId = Tag::where('name', $tag)->value('id');
+        }else{
+            $tag = Tag::create([ "name" => $tag]);
+            $tagId = $tag->id;
+        }
+
+        $article->tags()->attach($tagId);
        
         return back();
     }
