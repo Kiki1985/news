@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('title', 'News')
 @section('content')
-{{--@include('layouts.categories')--}}
 @foreach($tags as $tag)
 	<a href="/category/{{$tag->name}}"><button>{{$tag->name}}</button></a>
 @endforeach

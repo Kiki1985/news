@@ -17,9 +17,8 @@ class ArticlesController extends Controller
     public function index() 
     {
         $tags = Tag::all();
-        $categories = Category::all();
         $articles = Article::latest()->get();
-        return view('index', compact('articles', 'categories', 'tags'));
+        return view('index', compact('articles', 'tags'));
     }
 
     public function create()

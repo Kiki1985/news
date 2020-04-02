@@ -29,6 +29,6 @@ class SessionsController extends Controller
     {
         auth()->logout();
 
-        return redirect('authors');
+        return redirect('authors')->with('message','You have successfully logged out!');;
     }
 }
