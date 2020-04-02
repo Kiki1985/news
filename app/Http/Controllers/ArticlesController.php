@@ -38,26 +38,19 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->input("tag_id");
         $this->validate(request(),[
             'title' => ['required', 'min:3', 'max:25'],
             'body' => ['required', 'min:3', 'max:255']
         ]);
-        /*auth()->user()->publish(
-            new Article(request(['title', 'body']))
-        );*/
 
-        $article = new Article;
-        $article->title = $request->input('title');
-        $article->body = $request->input('body');
-        $article->user_id = auth()->user()->id;
-        $article->save();
-
-        \DB::table('article_tag')->insert(
-                ['article_id' => $article->id, 
-                'tag_id' => $input]
-            );
-
+        $article = Article::create([
+            'title' => request('title'),
+            'body' => request('body'),
+            'user_id' => auth()->id()
+        ]);
+        
+        $article->tags()->attach(request('tag_id'));
+       
         return back();
     }
 
