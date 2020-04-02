@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Category;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer("layouts.categories", function($view) 
+        {
+            $categories = Category::has('articles')->pluck('name');
+            $view->with(compact("categories"));
+        });
     }
 }

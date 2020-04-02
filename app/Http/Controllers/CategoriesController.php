@@ -10,9 +10,7 @@ class CategoriesController extends Controller
 {
     public function index(Category $category)
     {
-    	$categories = Category::has('articles')->pluck('name');
-    	$articles = $category->articles;
-
-    	return view('index', compact('articles', 'categories'));
+        $articles = $category->articles;
+        return view('index', compact('articles'));
     }
 }

@@ -16,9 +16,8 @@ class ArticlesController extends Controller
     }
     public function index() 
     {
-        $categories = Category::has('articles')->pluck('name');
         $articles = Article::latest()->get();
-        return view('index', compact('articles', 'categories'));
+        return view('index', compact('articles'));
     }
 
     public function create()
