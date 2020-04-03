@@ -14,20 +14,27 @@ class RegistrationController extends Controller
     }
 
     public function store(Request $request)
-    {   
-        $this->validate(request(), [
-            'firstName' => 'required|min:3|max:25',
-            'lastName' => 'required|min:3|max:25',
-            'email' => 'required|email|min:3|max:25',
-            'password' => 'required|confirmed|min:3|max:25'
-        ]);
-        $user = User::create([
-            'fName' => request('firstName'),
-            'lName' => request('lastName'),
-            'email' => request('email'),
-            'password' => bcrypt(request('password'))
-        ]);
-        auth()->login($user);
-        return redirect('authors/articles/create');
+    {  $email = $request->input("email");
+        
+        if (User::where('email', $email)->exists())
+        {
+            return redirect()->back()->with('message', 'The email address you have entered is already registered. Login instead');            
+        } else {
+            $this->validate(request(), [
+                'firstName' => 'required|min:3|max:25',
+                'lastName' => 'required|min:3|max:25',
+                'email' => 'required|email|min:3|max:25',
+                'password' => 'required|confirmed|min:3|max:25'
+            ]);
+            $user = User::create([
+                'fName' => request('firstName'),
+                'lName' => request('lastName'),
+                'email' => request('email'),
+                'password' => bcrypt(request('password'))
+            ]);
+            auth()->login($user);
+            session()->flash("message", "Thanks for Signing up");
+            return redirect('authors/articles/create');
+        }
     }
 }

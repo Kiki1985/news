@@ -12,4 +12,5 @@
 	<button>Submit</button><br><br>
 </form>
 @include('layouts.errors')
+@include('layouts.session')
 @endsection

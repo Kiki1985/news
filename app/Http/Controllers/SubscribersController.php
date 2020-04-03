@@ -21,6 +21,6 @@ class SubscribersController extends Controller
             'name' => ['required', 'min:3', 'max:25'],
             'email' => ['required', 'min:3', 'max:25']
         ]));
-        return back()->with('message','You are now subscribed.');
+        return back()->with('message','Thank You for subscribing!');
     }
 }

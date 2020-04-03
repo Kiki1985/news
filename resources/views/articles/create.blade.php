@@ -18,9 +18,11 @@
 <button type="submit">Create</button>
 </form><br>
 @include('layouts.errors')
+
 @foreach($articles as $article)
 <p>{{$article->title}}</p>
 @endforeach
 
  <a href="/logout"><button>Logout</button></a>
+ @include('layouts.session')
 @endsection

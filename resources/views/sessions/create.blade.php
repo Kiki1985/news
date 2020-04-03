@@ -9,7 +9,5 @@
 	<input type="password" name="password" placeholder="Password" required><br>
 	<button>Submit</button><br><br>
 </form>
-@if (session('message'))
-    <p>{{ session('message') }}
-@endif
+@include('layouts.session')
 @endsection
