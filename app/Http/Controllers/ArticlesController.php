@@ -17,7 +17,6 @@ class ArticlesController extends Controller
     public function index() 
     {
         $articles = Article::latest()->get();
-        return $articles;
         return view('index', compact('articles'));
     }
 
