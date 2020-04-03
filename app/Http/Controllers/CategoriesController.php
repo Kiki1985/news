@@ -11,8 +11,6 @@ class CategoriesController extends Controller
     public function index(Category $category)
     {
         $articles = $category->articles;
-        return $articles;
-        
         return view('index', compact('articles'));
     }
 }
