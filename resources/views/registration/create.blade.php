@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'New author registration')
+@section('title', 'Register')
 @section('content')
 <b><i>Register</i></b><hr>
 <form method="POST" action="/register">
