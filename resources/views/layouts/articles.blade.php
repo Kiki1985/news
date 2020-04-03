@@ -1,7 +1,7 @@
 @if(isset($category->name))
-<h3>{{ucfirst($category->name)}}</h3>
+<b><i>{{ucfirst($category->name)}}</i></b>
 @else
-<h3>All News</h3>
+<b><i>Latest News</i></b>
 @endif
 <hr>
 @foreach($articles as $article)

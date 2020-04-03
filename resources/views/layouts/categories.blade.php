@@ -1,6 +1,6 @@
 <div>
     <div style="float: left">
-        <a href="/">all news</a>&nbsp
+        <a href="/">latest news</a>&nbsp
         @foreach($categories as $category)
 	    <a href="/categories/{{$category}}">{{$category}}</a>&nbsp
         @endforeach

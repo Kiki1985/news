@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Log in')
 @section('content')
-<h3>Log in</h3><hr>
+<b><i>Log in</i></b><hr>
 <form method="POST" action="/login">
     @csrf
 	<input type="email" name="email" placeholder="email" required value="{{old('fName')}}"><br>

@@ -4,11 +4,11 @@
 @if (session('message'))
     <p>{{ session('message') }}
 @else
-    <b><i>Subscribe to news</i></b>
+    <b><i>Subscribe to news</i></b><hr>
     <form method="POST" action="/subscribers">
         @csrf
         <input type="text" name="name" placeholder="Name" required value="{{old('name')}}"><br>
-        <input type="email" name="email" placeholder="email" required value="{{old('email')}}"><br>
+        <input type="email" name="email" placeholder="email" required value="{{old('email')}}"><br><br>
         <button>Submit</button>
     </form>
 @include('layouts.errors')

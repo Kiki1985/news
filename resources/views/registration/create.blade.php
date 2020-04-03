@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'New author registration')
 @section('content')
-<h3>Register</h3><hr>
+<b><i>Register</i></b><hr>
 <form method="POST" action="/register">
     @csrf
 	<input type="text" name="firstName" placeholder="First Name" required value="{{old('firstName')}}"><br>
