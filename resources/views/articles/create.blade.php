@@ -1,8 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Create a new article')
 @section('content')
-<p>Author: {{Auth::user()->fName}} {{Auth::user()->lName}}</p>
-<h3>Create a new article</h3>
+<h3>Create a new article</h3><hr>
 
 <form method="POST" action="/articles">
     @csrf

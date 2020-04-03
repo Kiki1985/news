@@ -18,17 +18,18 @@ class SessionsController extends Controller
 
     public function store()
     {
-    	if(! auth()->attempt(request(['fName', 'lName', 'password'])))
+    	if(! auth()->attempt(request(['email', 'password'])))
     	{
     		return back()->with('message','Please check your credentials and try again.');
 
-    	}return redirect('authors/articles/create');
+    	}
+        return redirect('/');
     }
 
     public function destroy()
     {
         auth()->logout();
 
-        return redirect('authors')->with('message','You have successfully logged out!');
+        return redirect('/')->with('message','You have successfully logged out!');
     }
 }

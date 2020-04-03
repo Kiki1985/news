@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/authors', function () {
-    return view('authors');
-});
-
 Route::get('/', 'ArticlesController@index');
 
 Route::get('/articles/{article}', 'ArticlesController@show');
