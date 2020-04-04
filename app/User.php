@@ -48,12 +48,15 @@ class User extends Authenticatable
     {
         $name = Category::where('name', $article->category);
 
-        if(!$name)
+        if($name->exists())
         {
-            $name->save($article->category);
-            $id = $category->id;
+            $id = $name->value('id');
+            
         }else{
-            $id = $name->value('id');    
+            $category = Category::create([ 
+                "name" => $article->category
+            ]);
+            $id = $category->id;    
         }
 
         $this->articles()->create([
