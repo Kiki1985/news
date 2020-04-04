@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         {
             $categories = Category::has('articles')->pluck('name');
             $view->with(compact("categories"));
+
         });
     }
 }

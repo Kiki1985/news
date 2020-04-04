@@ -9,7 +9,7 @@
 	<input type="email" name="email" placeholder="email" required value="{{old('email')}}"><br>
 	<input type="password" name="password" placeholder="Password" required ><br>
 	<input type="password" name="password_confirmation" id="password_confirmation" placeholder="Password Confirmation" required ><br><br>
-	<button>Submit</button><br><br>
+	<button>Register</button><br><br>
 </form>
 @include('layouts.errors')
 @include('layouts.session')

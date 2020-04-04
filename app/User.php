@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Category;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,5 +42,24 @@ class User extends Authenticatable
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function publish(Article $article)
+    {
+        $publishedArticle = Article::create([
+            'title' => $article->title,
+            'body' => $article->body,
+            'user_id' => auth()->id()
+        ]);
+        $category = $article->category;
+        if(Category::where('name', $category)->exists())
+        {
+            $categoryId = Category::where('name', $category)->value('id');
+        }else{
+            $category = Category::create([ "name" => $category]);
+            $categoryId = $category->id;
+        }
+        $publishedArticle->categories()->attach($categoryId);
+        
     }
 }

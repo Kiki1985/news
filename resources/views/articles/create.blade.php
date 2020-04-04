@@ -1,8 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Create a new article')
 @section('content')
-<h3>Create a new article</h3><hr>
-
+<b><i>Create a new article</i></b><hr>
 <form method="POST" action="/articles">
     @csrf
 <label for="category">Select a category:</label>
@@ -14,7 +13,7 @@
 </select><br><br>
 <input type="text" name="title" placeholder="Article title" required value="{{old('title')}}"><br><br>
 <textarea name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
-<button type="submit">Create</button>
+<button type="submit">Publish</button>
 </form><br>
 @include('layouts.errors')
 

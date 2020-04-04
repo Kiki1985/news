@@ -10,7 +10,7 @@
         @if(Auth::check())
         <a href="#">{{Auth::user()->fName}}</a>&nbsp
         <a href="/logout">Logout</a>&nbsp
-        <a href="/authors/articles/create">New article</a>
+        <a href="/articles/create">New article</a>
         @else
         <a href="/login">Login</a>&nbsp
         <a href="/register">Register</a>

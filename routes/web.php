@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ArticlesController@index');
 
-Route::get('/articles/{article}', 'ArticlesController@show');
+Route::get('/articles/create', 'ArticlesController@create');
 
-Route::get('/authors/articles/create', 'ArticlesController@create');
+Route::get('/articles/{article}', 'ArticlesController@show');
 
 Route::post('/articles', 'ArticlesController@store');
 
