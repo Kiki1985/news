@@ -46,20 +46,19 @@ class User extends Authenticatable
 
     public function publish(Article $article)
     {
-        $publishedArticle = Article::create([
-            'title' => $article->title,
-            'body' => $article->body,
-            'user_id' => auth()->id()
-        ]);
-        $category = $article->category;
-        if(Category::where('name', $category)->exists())
+        $name = Category::where('name', $article->category);
+
+        if(!$name)
         {
-            $categoryId = Category::where('name', $category)->value('id');
+            $name->save($article->category);
+            $id = $category->id;
         }else{
-            $category = Category::create([ "name" => $category]);
-            $categoryId = $category->id;
+            $id = $name->value('id');    
         }
-        $publishedArticle->categories()->attach($categoryId);
-        
+
+        $this->articles()->create([
+            'title' => $article->title,
+            'body' => $article->body
+        ])->categories()->attach($id);
     }
 }

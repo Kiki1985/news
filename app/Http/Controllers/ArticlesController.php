@@ -30,7 +30,6 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        
         $this->validate(request(),[
             'title' => ['required', 'min:3', 'max:25'],
             'body' => ['required', 'min:3', 'max:255']
@@ -39,24 +38,6 @@ class ArticlesController extends Controller
         auth()->user()->publish(
             new Article(request(['title', 'body', 'category']))
         );
-
-        /*$article = Article::create([
-            'title' => request('title'),
-            'body' => request('body'),
-            'user_id' => auth()->id()
-        ]);
-
-        $category = $request->input("category");
-        
-        if(Category::where('name', $category)->exists())
-        {
-            $categoryId = Category::where('name', $category)->value('id');
-        }else{
-            $category = Category::create([ "name" => $category]);
-            $categoryId = $category->id;
-        }
-
-        $article->categories()->attach($categoryId);*/
        
         return back();
     }
