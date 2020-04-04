@@ -34,7 +34,7 @@ class RegistrationController extends Controller
             ]);
             auth()->login($user);
             session()->flash("message", "Thanks for Signing up");
-            return redirect('authors/articles/create');
+            return redirect('/articles/create');
         }
     }
 }
