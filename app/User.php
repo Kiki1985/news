@@ -46,10 +46,10 @@ class User extends Authenticatable
 
     public function publish(Article $article)
     {
-        $name = Category::where('name', $article->category);
-        $id = $name->value('id');
+        $name = Category::where('name', $article->category)->value('id');
+        //$id = $name->value('id');
 
-        if(!$name->exists())
+        if(!is_null($name))
         {
            $category = Category::create([ 
                 "name" => $article->category
@@ -60,6 +60,6 @@ class User extends Authenticatable
         $this->articles()->create([
             'title' => $article->title,
             'body' => $article->body
-        ])->categories()->attach($id);
+        ])->categories()->attach($name);
     }
 }
