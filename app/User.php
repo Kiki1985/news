@@ -47,7 +47,6 @@ class User extends Authenticatable
     public function publish(Article $article)
     {
         $name = Category::where('name', $article->category)->value('id');
-        //$id = $name->value('id');
 
         if(!is_null($name))
         {
