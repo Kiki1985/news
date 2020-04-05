@@ -38,7 +38,7 @@ class ArticlesController extends Controller
         auth()->user()->publish(
             new Article(request(['title', 'body', 'category']))
         );
-       
+        
         return back();
     }
 

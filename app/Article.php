@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
+
 use App\Subscriber;
 
 use App\Events\ArticleCreated;

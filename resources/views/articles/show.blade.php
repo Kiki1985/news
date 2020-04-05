@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', $article->title)
 @section('content')
-<h3>{{$article->title}}</h3><hr>
+<b><i>{{ucfirst(str_replace('-', ' ', $article->title))}}</i></b><hr>
 @if(count($article->categories))
     @foreach($article->categories as $category)
         <p>Category <a href="/categories/{{$category->name}}">{{$category->name}}</a></p>

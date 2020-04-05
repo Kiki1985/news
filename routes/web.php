@@ -6,7 +6,9 @@ Route::get('/', 'ArticlesController@index');
 
 Route::get('/articles/create', 'ArticlesController@create');
 
-Route::get('/articles/{article}', 'ArticlesController@show');
+
+Route::get('/articles/{article:title}', 'ArticlesController@show');
+
 
 Route::post('/articles', 'ArticlesController@store');
 

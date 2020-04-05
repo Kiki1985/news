@@ -18,7 +18,7 @@
 @include('layouts.errors')
 
 @foreach($articles as $article)
-<p>{{$article->title}}</p>
+<p>{{ucfirst(str_replace('-', ' ', $article->title))}}</p>
 @endforeach
 
  <a href="/logout"><button>Logout</button></a>

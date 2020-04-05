@@ -4,6 +4,8 @@ namespace App;
 
 use App\Category;
 
+use Illuminate\Support\Str;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,7 +59,7 @@ class User extends Authenticatable
         }
 
         $this->articles()->create([
-            'title' => $article->title,
+            'title' => Str::slug($article->title),
             'body' => $article->body
         ])->categories()->attach($name);
     }
