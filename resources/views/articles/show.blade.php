@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', $article->title)
+@section('title', ucfirst(str_replace('-', ' ', $article->title)))
 @section('content')
 <b><i>{{ucfirst(str_replace('-', ' ', $article->title))}}</i></b><hr>
 @if(count($article->categories))
