@@ -9,7 +9,7 @@
         @csrf
         <input type="text" name="name" placeholder="Name" required value="{{old('name')}}"><br>
         <input type="email" name="email" placeholder="email" required value="{{old('email')}}"><br><br>
-        <button>Submit</button>
+        <button>Subscribe</button>
     </form>
 @include('layouts.errors')
 @endif
