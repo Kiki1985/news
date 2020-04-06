@@ -17,8 +17,9 @@ class ArticlesController extends Controller
     
     public function index() 
     {
+        $category = (object)array("name"=>"news");
         $articles = Article::latest()->get();
-        return view('index', compact('articles'));
+        return view('index', compact('articles', 'category'));
     }
 
     public function create()
