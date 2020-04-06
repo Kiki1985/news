@@ -14,10 +14,12 @@ class ArticlesController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
+    
     public function index() 
     {
+        $category = 'news';
         $articles = Article::latest()->get();
-        return view('index', compact('articles'));
+        return view('index', compact('articles', 'category'));
     }
 
     public function create()
@@ -41,9 +43,9 @@ class ArticlesController extends Controller
         
         return back();
     }
-
-    public function show(Article $article)
+    
+    public function show($category, Article $article)
     {
-        return view('articles.show', compact('article'));
+        return view('articles.show', compact('article', 'category'));
     }
 }

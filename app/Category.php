@@ -8,9 +8,4 @@ class Category extends Model
     {
         return $this->belongsToMany(Article::class)->latest("created_at");
     }
-
-    public function getRouteKeyName()
-    {
-    	return 'name';
-    }
 }

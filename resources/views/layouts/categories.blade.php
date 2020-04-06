@@ -1,8 +1,8 @@
 <div>
     <div style="float: left">
-        <a href="/">latest news</a>&nbsp
+        <a href="/">news</a>&nbsp
         @foreach($categories as $category)
-	    <a href="/categories/{{$category}}">{{$category}}</a>&nbsp
+	    <a href="/{{$category}}">{{$category}}</a>&nbsp
         @endforeach
     </div>
     

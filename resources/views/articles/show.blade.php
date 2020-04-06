@@ -4,7 +4,7 @@
 <b><i>{{ucfirst(str_replace('-', ' ', $article->title))}}</i></b><hr>
 @if(count($article->categories))
     @foreach($article->categories as $category)
-        <p>Category <a href="/categories/{{$category->name}}">{{$category->name}}</a></p>
+        <p>Category <a href="/{{$category->name}}">{{$category->name}}</a></p>
     @endforeach
 @endif
 <p>{{$article->body}}</p>
