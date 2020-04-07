@@ -88,7 +88,7 @@ class ArticlesController extends Controller
             if(!$name)
             {
                 $category = Category::create([ 
-                    "name" => request('category')
+                    "name" => $request->category
                 ]);
                 $name = $category->id;
             }
@@ -100,6 +100,6 @@ class ArticlesController extends Controller
         $article->categories()->attach($name);
 
         }
-        return redirect('articles/create');
+        return redirect('/');
     }
 }
