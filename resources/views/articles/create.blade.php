@@ -16,10 +16,26 @@
 <button type="submit">Publish</button>
 </form><br>
 @include('layouts.errors')
-
+<table align="center">
+ <tr>
 @foreach($articles as $article)
-<p>{{ucfirst(str_replace('-', ' ', $article->title))}}</p>
+    @foreach($article->categories as $category)
+    <td><p><a href="/{{$category->name}}/{{$article->title}}">{{ucfirst(str_replace('-', ' ', $article->title))}}</a></p></td>
+
+   
+<td>
+    <a href="/{{$category->name}}/{{$article->title}}/edit"><button>Update</button></a>
+</td>
+<td><form method="POST" action="/{{$category->name}}/{{$article->title}}">
+    {{ csrf_field() }}
+    {{ method_field('DELETE') }}
+    <div><button>Delete</button></div>
+</form></td></tr>
+    
+    @endforeach
 @endforeach
+
+</table><br>
 
  <a href="/logout"><button>Logout</button></a>
  @include('layouts.session')
