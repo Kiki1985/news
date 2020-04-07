@@ -8,17 +8,11 @@ Route::get('/articles/create', 'ArticlesController@create');
 
 Route::get('/{category:name}/{article:title}', 'ArticlesController@show');
 
-
-
-
 Route::get('/{category:name}/{article:title}/edit', 'ArticlesController@edit');
 
 Route::patch('/{category:name}/{article:title}', 'ArticlesController@update');
 
 Route::delete('/{category:name}/{article:title}', 'ArticlesController@destroy');
-
-
-
 
 Route::post('/articles', 'ArticlesController@store');
 

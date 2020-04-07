@@ -3,7 +3,6 @@
 @section('content')
 <b><i>Update an article</i></b><hr>
 
-
 <form method="POST" action="/{{$category}}/{{$article->title}}">
     {{ method_field('PATCH') }}
     @csrf

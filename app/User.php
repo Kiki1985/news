@@ -50,7 +50,7 @@ class User extends Authenticatable
     {
         $name = Category::where('name', $article->category)->value('id');
         
-        if(is_null($name))
+        if(!$name)
         {
             $category = Category::create([ 
                 "name" => $article->category

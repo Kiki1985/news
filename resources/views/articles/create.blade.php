@@ -17,20 +17,22 @@
 </form><br>
 @include('layouts.errors')
 <table align="center">
+
  <tr>
+
 @foreach($articles as $article)
     @foreach($article->categories as $category)
     <td><p><a href="/{{$category->name}}/{{$article->title}}">{{ucfirst(str_replace('-', ' ', $article->title))}}</a></p></td>
 
-   
-<td>
-    <a href="/{{$category->name}}/{{$article->title}}/edit"><button>Update</button></a>
-</td>
+    <td><a href="/{{$category->name}}/{{$article->title}}/edit"><button>Update</button></a></td>
+
 <td><form method="POST" action="/{{$category->name}}/{{$article->title}}">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
     <div><button>Delete</button></div>
-</form></td></tr>
+</form></td>
+
+</tr>
     
     @endforeach
 @endforeach

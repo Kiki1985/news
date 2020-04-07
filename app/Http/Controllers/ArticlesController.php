@@ -73,18 +73,19 @@ class ArticlesController extends Controller
             'body' => ['required', 'min:3', 'max:255']
         ]);
         
-        if(request('category') == $article->categories)
+        if($request->category == $category)
         {
-            $article->title = Str::slug(request('title'));
-            $article->body = request('body');
+            //$article->update(request(['title', 'body']));
+            $article->title = Str::slug($request->title);
+            $article->body = $request->body;
             $article->save();
 
         }else{
 
         $article->categories()->detach();
-        $name = Category::where('name', request('category'))->value('id');
+        $name = Category::where('name', $request->category)->value('id');
         
-            if(is_null($name))
+            if(!$name)
             {
                 $category = Category::create([ 
                     "name" => request('category')
@@ -92,8 +93,8 @@ class ArticlesController extends Controller
                 $name = $category->id;
             }
 
-        $article->title = Str::slug(request('title'));
-        $article->body = request('body');
+        $article->title = Str::slug($request->title);
+        $article->body = $request->body;
         $article->save();
 
         $article->categories()->attach($name);
