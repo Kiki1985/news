@@ -31,9 +31,10 @@ class Article extends Model
 
     public function addCategory($categories)
     {
-        if(Category::all()->isEmpty())
+        foreach($categories as $category)
         {
-            foreach($categories as $category)
+            //$categ = Category::where('name', $category)->first();
+            if(!(Category::where('name', $category)->exists()))
             {
                 Category::create([ 
                     "name" => $category
