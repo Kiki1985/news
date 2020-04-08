@@ -44,7 +44,6 @@ class ArticlesController extends Controller
             'category' => 'required'
             ]))
         );
-        
         return back();
     }
     
