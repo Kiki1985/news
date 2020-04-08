@@ -83,10 +83,11 @@ class ArticlesController extends Controller
         ]);
 
         $article->categories()->detach();
-        
-        $article->title = Str::slug($request->title);
-        $article->body = $request->body;
-        $article->save();
+
+        $article->update([
+            'title' => Str::slug($request->title), 
+            'body' => $request->body
+        ]);
 
         $article->categories()->attach($request->category);
 
