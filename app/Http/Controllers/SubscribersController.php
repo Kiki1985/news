@@ -18,8 +18,8 @@ class SubscribersController extends Controller
     public function store()
     {
         $subscriber = Subscriber::create(request()->validate([
-            'name' => ['required', 'min:3', 'max:25'],
-            'email' => ['required', 'min:3', 'max:25']
+            'name' => 'required|min:3|max:25',
+            'email' => 'required|min:3|max:25'
         ]));
         return back()->with('message','Thank You for subscribing!');
     }

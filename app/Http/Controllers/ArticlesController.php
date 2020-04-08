@@ -19,6 +19,17 @@ class ArticlesController extends Controller
     
     public function index() 
     {
+        $categories = ['sport', 'politic', 'economy'];
+        if(Category::all()->isEmpty())
+        {
+            foreach($categories as $categ)
+            {
+                Category::create([ 
+                    "name" => $categ
+                ]);
+            }
+        }
+    
         $category = (object)array("name"=>"news");
         $articles = Article::latest()->get();
         return view('index', compact('articles', 'category'));
@@ -28,15 +39,15 @@ class ArticlesController extends Controller
     {
         return view('articles.create', [
             'articles' => Article::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get(), 
-            'categories' =>['sport', 'politic', 'economy']
+            'categories' => Category::all()
         ]);
     }
 
     public function store(Request $request)
     {
-        $this->validate(request(),[
-            'title' => ['required', 'min:3', 'max:25'],
-            'body' => ['required', 'min:3', 'max:255']
+        request()->validate([
+            'title' => 'required|min:3|max:25',
+            'body' => 'required|min:3|max:25'
         ]);
 
         auth()->user()->publish(
@@ -55,51 +66,30 @@ class ArticlesController extends Controller
     {
         $article->categories()->detach();
         $article->delete();
-        return back();
+        return redirect('/');
     }
 
     public function edit($category, Article $article)
     {
-        $categories = ['sport', 'politic', 'economy'];
+        $categories = Category::all();
         return view('articles.edit', compact('article', 'category', 'categories'));
     }
 
-
-
     public function update($category, Article $article, Request $request)
     {
-        $this->validate(request(),[
-            'title' => ['required', 'min:3', 'max:25'],
-            'body' => ['required', 'min:3', 'max:255']
+        request()->validate([
+            'title' => 'required|min:3|max:25',
+            'body' => 'required|min:3|max:25'
         ]);
-        
-        if($request->category == $category)
-        {
-            //$article->update(request(['title', 'body']));
-            $article->title = Str::slug($request->title);
-            $article->body = $request->body;
-            $article->save();
-
-        }else{
 
         $article->categories()->detach();
-        $name = Category::where('name', $request->category)->value('id');
         
-            if(!$name)
-            {
-                $category = Category::create([ 
-                    "name" => $request->category
-                ]);
-                $name = $category->id;
-            }
-
         $article->title = Str::slug($request->title);
         $article->body = $request->body;
         $article->save();
 
-        $article->categories()->attach($name);
+        $article->categories()->attach($request->category);
 
-        }
         return redirect('/');
     }
 }

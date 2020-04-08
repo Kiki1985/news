@@ -10,8 +10,8 @@
     @if($article->user_id == Auth::id()) 
     <p><a href="/{{$category->name}}/{{$article->title}}/edit"><button>Edit</button></a> 
     <form method="POST" action="/{{$category->name}}/{{$article->title}}">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
+    @method('DELETE')
+    @csrf
     <div><button>Delete</button></div>
     </form>
     </p>

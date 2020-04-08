@@ -1,19 +1,21 @@
 @extends('layouts.master')
 @section('title', 'Create a new article')
 @section('content')
-<b><i>Create a new article</i></b><hr>
+
+<b><i>Create an article</i></b><hr>
+
 <form method="POST" action="/articles">
     @csrf
 <label for="category">Select a category:</label>
 <select name="category">
 @foreach($categories as $category)
-	<option value="{{$category}}">{{$category}}</option>
+	<option value="{{$category->id}}">{{$category->name}}</option>
 @endforeach
 
 </select><br><br>
 <input type="text" name="title" placeholder="Article title" required value="{{old('title')}}"><br><br>
 <textarea name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
-<button type="submit">Publish</button>
+<button type="submit">Create</button>
 </form><br>
 @include('layouts.errors')
 <table align="center">
@@ -27,8 +29,8 @@
     <td><a href="/{{$category->name}}/{{$article->title}}/edit"><button>Edit</button></a></td>
 
 <td><form method="POST" action="/{{$category->name}}/{{$article->title}}">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
+    @method('DELETE')
+    @csrf
     <div><button>Delete</button></div>
 </form></td>
 

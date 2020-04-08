@@ -20,8 +20,8 @@ class CreateCategoriesTable extends Migration
         });
 
         Schema::create('article_category', function (Blueprint $table) {
-            $table->integer('article_id');
-            $table->integer('category_id');
+            $table->unsignedInteger('article_id');
+            $table->unsignedInteger('category_id');
             $table->primary(['article_id', 'category_id']);
         });
     }

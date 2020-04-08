@@ -14,13 +14,14 @@ class RegistrationController extends Controller
     }
 
     public function store(Request $request)
-    {  $email = $request->input("email");
+    {   
+        $email = $request->email;
         
         if (User::where('email', $email)->exists())
         {
             return redirect()->back()->with('message', 'The email address you have entered is already registered. Login instead');            
         } else {
-            $this->validate(request(), [
+            request()->validate([
                 'firstName' => 'required|min:3|max:25',
                 'lastName' => 'required|min:3|max:25',
                 'email' => 'required|email|min:3|max:25',

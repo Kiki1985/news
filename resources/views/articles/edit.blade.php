@@ -1,15 +1,16 @@
 @extends('layouts.master')
-@section('title', 'Update atricle')
+@section('title', 'Edit atricle')
 @section('content')
+
 <b><i>Edit an article</i></b><hr>
 
 <form method="POST" action="/{{$category}}/{{$article->title}}">
-    {{ method_field('PATCH') }}
+    @method('PATCH')
     @csrf
 <label for="category">Select a category:</label>
 <select name="category">
 @foreach($categories as $category)
-	<option value="{{$category}}">{{$category}}</option>
+	<option value="{{$category->id}}">{{$category->name}}</option>
 @endforeach
 
 </select><br><br>
