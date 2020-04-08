@@ -28,4 +28,17 @@ class Article extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function addCategory($categories)
+    {
+        if(Category::all()->isEmpty())
+        {
+            foreach($categories as $category)
+            {
+                Category::create([ 
+                    "name" => $category
+                ]);
+            }
+        }
+    }
 }

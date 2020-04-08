@@ -17,18 +17,10 @@ class ArticlesController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
     
-    public function index() 
+    public function index(Article $article) 
     {
         $categories = ['sport', 'politic', 'economy'];
-        if(Category::all()->isEmpty())
-        {
-            foreach($categories as $categ)
-            {
-                Category::create([ 
-                    "name" => $categ
-                ]);
-            }
-        }
+        $article->addCategory($categories);
     
         $category = (object)array("name"=>"news");
         $articles = Article::latest()->get();
@@ -45,13 +37,12 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate([
-            'title' => 'required|min:3|max:25',
-            'body' => 'required|min:3|max:25'
-        ]);
-
         auth()->user()->publish(
-            new Article(request(['title', 'body', 'category']))
+            new Article(request()->validate([
+            'title' => 'required|min:3|max:25',
+            'body' => 'required|min:3|max:25',
+            'category' => 'required'
+            ]))
         );
         
         return back();
