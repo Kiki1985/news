@@ -12,7 +12,7 @@ class Article extends Model
 {
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     protected static function boot()
@@ -33,7 +33,6 @@ class Article extends Model
     {
         foreach($categories as $category)
         {
-            //$categ = Category::where('name', $category)->first();
             if(!(Category::where('name', $category)->exists()))
             {
                 Category::create([ 
@@ -41,5 +40,13 @@ class Article extends Model
                 ]);
             }
         }
+    }
+
+    public function edit(Article $article)
+    {
+        Article::update([
+            'title' => Str::slug($article->title), 
+            'body' => $article->body
+        ]);
     }
 }

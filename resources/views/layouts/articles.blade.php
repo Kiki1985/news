@@ -7,7 +7,7 @@
     </p>
     <p>{{substr($article->body,0,20)}} ... <a href="/{{$category->name}}/{{$article->title}}">Read more</a></p>
 
-    @if($article->user_id == Auth::id()) 
+    @if($article->author_id == auth()->id()) 
     <p><a href="/{{$category->name}}/{{$article->title}}/edit"><button>Edit</button></a> 
     <form method="POST" action="/{{$category->name}}/{{$article->title}}">
     @method('DELETE')

@@ -10,7 +10,7 @@
 <p>{{$article->body}}</p>
 <p>Created at {{$article->created_at->diffForHumans()}}</p>
 <p>By {{$article->user->fName}} {{$article->user->lName}}</p>
-@if($article->user_id == Auth::id()) 
+@if($article->author_id == auth()->id()) 
     <p><a href="/{{$category->name}}/{{$article->title}}/edit"><button>Edit</button></a> 
     <form method="POST" action="/{{$category->name}}/{{$article->title}}">
     @method('DELETE')

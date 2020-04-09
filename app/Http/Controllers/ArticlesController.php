@@ -30,7 +30,7 @@ class ArticlesController extends Controller
     public function create()
     {
         return view('articles.create', [
-            'articles' => Article::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get(), 
+            'articles' => auth()->user()->articles,
             'categories' => Category::all()
         ]);
     }
@@ -38,12 +38,9 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         auth()->user()->publish(
-            new Article(request()->validate([
-            'title' => 'required|min:3|max:25',
-            'body' => 'required|min:3|max:25',
-            'category' => 'required'
-            ]))
+            new Article($this->validateArticle())
         );
+
         return back();
     }
     
@@ -67,20 +64,20 @@ class ArticlesController extends Controller
 
     public function update($category, Article $article, Request $request)
     {
-        request()->validate([
-            'title' => 'required|min:3|max:25',
-            'body' => 'required|min:3|max:25'
-        ]);
-
         $article->categories()->detach();
-
-        $article->update([
-            'title' => Str::slug($request->title), 
-            'body' => $request->body
-        ]);
-
+        $article->edit(
+            new Article($this->validateArticle())
+        );
         $article->categories()->attach($request->category);
-
         return redirect('/');
+    }
+
+    protected function validateArticle()
+    {
+        return request()->validate([
+            'title' => 'required|min:3|max:25',
+            'body' => 'required|min:3|max:25',
+            'category' => 'required'
+            ]);
     }
 }

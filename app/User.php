@@ -4,6 +4,8 @@ namespace App;
 
 use App\Category;
 
+use Auth;
+
 use Illuminate\Support\Str;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -43,7 +45,7 @@ class User extends Authenticatable
 
     public function articles()
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Article::class, 'author_id')->latest();
     }
 
     public function publish(Article $article)
