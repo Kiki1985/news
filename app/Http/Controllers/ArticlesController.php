@@ -10,8 +10,6 @@ use App\Article;
 
 use App\Category;
 
-use App\User;
-
 class ArticlesController extends Controller
 {
     public function index(Article $article) 
