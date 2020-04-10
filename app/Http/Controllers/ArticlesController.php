@@ -26,6 +26,8 @@ class ArticlesController extends Controller
 
     public function create()
     {
+        abort_unless(auth()->user(), 403);
+
         return view('articles.create', [
             'articles' => auth()->user()->articles,
             'categories' => Category::all()

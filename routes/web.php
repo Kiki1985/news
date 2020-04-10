@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'ArticlesController@index')->name('login');
+Route::get('/', 'ArticlesController@index');
 
-Route::get('/articles/create', 'ArticlesController@create')->middleware('auth');
+Route::get('/articles/create', 'ArticlesController@create');
 
 Route::get('/{category:name}/{article:title}', 'ArticlesController@show');
 
