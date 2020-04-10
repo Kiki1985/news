@@ -8,7 +8,7 @@
     
     <div style="float: right;">
         @if(Auth::check())
-        <a href="#">{{Auth::user()->fName}}</a> &nbsp
+        <a href="#">{{auth()->user()->fName}}</a> &nbsp
         <a href="/logout">Logout</a> &nbsp
         <a href="/articles/create">New article</a>
         @else

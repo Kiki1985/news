@@ -10,13 +10,10 @@ use App\Article;
 
 use App\Category;
 
+use App\User;
+
 class ArticlesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
-    }
-    
     public function index(Article $article) 
     {
         $categories = ['sport', 'politic', 'economy'];
@@ -46,11 +43,13 @@ class ArticlesController extends Controller
     
     public function show($category, Article $article)
     {
+
         return view('articles.show', compact('article', 'category'));
     }
 
     public function destroy($category, Article $article)
     {
+        $this->authorize('update', $article);
         $article->categories()->detach();
         $article->delete();
         return redirect('/');
@@ -58,12 +57,16 @@ class ArticlesController extends Controller
 
     public function edit($category, Article $article)
     {
+        $this->authorize('update', $article);
+
         $categories = Category::all();
         return view('articles.edit', compact('article', 'category', 'categories'));
     }
 
     public function update($category, Article $article, Request $request)
     {
+        $this->authorize('update', $article);
+
         $article->categories()->detach();
         $article->edit(
             new Article($this->validateArticle())

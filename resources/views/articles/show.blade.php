@@ -10,14 +10,16 @@
 <p>{{$article->body}}</p>
 <p>Created at {{$article->created_at->diffForHumans()}}</p>
 <p>By {{$article->user->fName}} {{$article->user->lName}}</p>
-@if($article->author_id == auth()->id()) 
+
+@can('update', $article)
     <p><a href="/{{$category->name}}/{{$article->title}}/edit"><button>Edit</button></a> 
     <form method="POST" action="/{{$category->name}}/{{$article->title}}">
     @method('DELETE')
     @csrf
-    <div><button>Delete</button></div>
+    <button>Delete</button>
     </form>
     </p>
-@endif
+@endcan
+
 <a href="javascript:history.go(-1)"><button>Back</button></a>
 @endsection
