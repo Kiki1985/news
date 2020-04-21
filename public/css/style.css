@@ -34,6 +34,7 @@ a{
     overflow: auto; 
     border-bottom: 1px solid #CBCBCB; 
     width:100%;
+    
 }
 
 #navDate{
@@ -522,7 +523,7 @@ select{
     #down .follow{
         min-width: 271px;
         padding-right: 0;
-          float: none;
+        float: none;
         margin: auto;
     }
 
@@ -532,16 +533,16 @@ select{
     }
 
     #bigRight{
-          width:100%;
+        width:100%;
     }
 
     #bigLeft{
-          width:100%;
+        width:100%;
     }
 
     .smallLeft:nth-child(even){
-          padding-left: 0;
-          font-size: 14px;
+        padding-left: 0;
+        font-size: 14px;
     }
 
     .smallLeft{
@@ -555,18 +556,18 @@ select{
     }
 
     .main{
-          max-width: 90%;
-          margin-left: 5%;
-          min-height: 400px;
+        max-width: 90%;
+        margin-left: 5%;
+        min-height: 400px;
     }
 
    /* #search{
-          float: none;
-          overflow: auto;
-          width: 50%;
-          margin:0;
-          margin-left:23%;
-          margin-right: 23%;
+        float: none;
+        overflow: auto;
+        width: 50%;
+        margin:0;
+        margin-left:23%;
+        margin-right: 23%;
     }*/
 
     #search{
@@ -576,33 +577,33 @@ select{
 
     aside{
         text-align: center;
-          margin-right: 20.5%;
+        margin-right: 20.5%;
         width: 55%;
     }
 
     .follow{
-          margin-left: 0;
+        margin-left: 0;
     }
 
     .subscription{
-      
+    
     }
 
   aside:nth-of-type(4){
-      float: left;
-      min-width: 60%;
-      width: 100%;
+    float: left;
+    min-width: 60%;
+    width: 100%;
   }
 
   aside article{
-      max-width: 49%;
-      padding-right: 2%;
-      float: left;
-      text-align: left;
+    max-width: 49%;
+    padding-right: 2%;
+    float: left;
+    text-align: left;
   }
 
   aside article:nth-of-type(2){
-      padding-right: 0;
+    padding-right: 0;
   }
 
   footer .subscription{
@@ -610,13 +611,13 @@ select{
   }
 
   footer #tags{
-      float: right;
-      margin: 0;
-      margin-bottom: 20px;
+    float: right;
+    margin: 0;
+    margin-bottom: 20px;
   }
 
   footer .categories{
-      width: 30%;
+    width: 30%;
   }
 
 }
@@ -678,12 +679,3 @@ select{
         text-align: center;
     }
 }
-
-
-
-
-
-
-
-
-
