@@ -12,7 +12,7 @@ use App\Category;
 
 class ArticlesController extends Controller
 {
-    public function index(Article $article) 
+    public function index(Article $article)
     {
         $categories = ['sport', 'politic', 'economy', 'world'];
         $article->addCategory($categories);

@@ -29,17 +29,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer("layouts.master", function($view) 
-        {
+        view()->composer("layouts.master", function ($view) {
             $categories = Category::has('articles')->pluck('name');
             $date = Carbon::now();
             $networks = ['facebook', 'twitter', 'google', 'youtube', 'feed'];
             $view->with(compact("categories", "date", "networks"));
-
         });
 
-        view()->composer("layouts.articles", function($view) 
-        {
+        view()->composer("layouts.articles", function ($view) {
             $categories = Category::has('articles')->get();
             $view->with(compact("categories"));
         });

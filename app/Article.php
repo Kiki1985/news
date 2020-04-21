@@ -17,11 +17,11 @@ class Article extends Model
 
     protected static function boot()
     {
-    	parent::boot();
-        static::created(function($article){
-        	$subscribers = Subscriber::all();
+        parent::boot();
+        static::created(function ($article) {
+            $subscribers = Subscriber::all();
             event(new ArticleCreated($article, $subscribers));
-    	});
+        });
     }
 
     public function categories()
@@ -31,11 +31,9 @@ class Article extends Model
 
     public function addCategory($categories)
     {
-        foreach($categories as $category)
-        {
-            if(!(Category::where('name', $category)->exists()))
-            {
-                Category::create([ 
+        foreach ($categories as $category) {
+            if (!(Category::where('name', $category)->exists())) {
+                Category::create([
                     "name" => $category
                 ]);
             }
@@ -45,7 +43,7 @@ class Article extends Model
     public function edit(Article $article)
     {
         Article::update([
-            'title' => Str::slug($article->title), 
+            'title' => Str::slug($article->title),
             'body' => $article->body
         ]);
     }

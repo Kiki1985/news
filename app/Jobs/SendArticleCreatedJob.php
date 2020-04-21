@@ -34,7 +34,7 @@ class SendArticleCreatedJob implements ShouldQueue
      */
     public function handle()
     {
-        foreach($this->subscribers as $subscriber){
+        foreach ($this->subscribers as $subscriber) {
             \Mail::to($subscriber->email)->send(
                 new ArticleCreated($this->article)
             );

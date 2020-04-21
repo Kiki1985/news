@@ -8,8 +8,6 @@ class Subscriber extends Model
 {
 
     protected $dispatchesEvents = [
-    	'created' =>SubscriberRegistrated::class
+        'created' =>SubscriberRegistrated::class
     ];
 }
-
-	
