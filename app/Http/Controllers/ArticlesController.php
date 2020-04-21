@@ -14,7 +14,7 @@ class ArticlesController extends Controller
 {
     public function index(Article $article) 
     {
-        $categories = ['sport', 'politic', 'economy'];
+        $categories = ['sport', 'politic', 'economy', 'world'];
         $article->addCategory($categories);
     
         $category = (object)array("name"=>"news");
@@ -78,8 +78,8 @@ class ArticlesController extends Controller
     protected function validateArticle()
     {
         return request()->validate([
-            'title' => 'required|min:3|max:25',
-            'body' => 'required|min:3|max:25',
+            'title' => 'required|min:3|max:255',
+            'body' => 'required|min:3|max:2555',
             'category' => 'required'
             ]);
     }

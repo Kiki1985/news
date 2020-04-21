@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Category;
 
+use App\Article;
+
+use Carbon\Carbon;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,11 +29,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer("layouts.categories", function($view) 
+        view()->composer("layouts.master", function($view) 
         {
             $categories = Category::has('articles')->pluck('name');
-            $view->with(compact("categories"));
+            $date = Carbon::now();
+            $networks = ['facebook', 'twitter', 'google', 'youtube', 'feed'];
+            $view->with(compact("categories", "date", "networks"));
 
+        });
+
+        view()->composer("layouts.articles", function($view) 
+        {
+            $categories = Category::has('articles')->get();
+            $view->with(compact("categories"));
         });
     }
 }

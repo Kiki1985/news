@@ -1,16 +1,23 @@
 @extends('layouts.master')
 @section('title', 'Register')
 @section('content')
-<b><i>Register</i></b><hr>
+
+<span class="h1"><i>Register</i></span>
+<div class="main"><hr>
+    <div class="show">
+
 <form method="POST" action="/register">
     @csrf
-	<input type="text" name="firstName" placeholder="First Name" required value="{{old('firstName')}}"><br>
-	<input type="text" name="lastName" placeholder="Last Name" required value="{{old('lastName')}}"><br>
-	<input type="email" name="email" placeholder="email" required value="{{old('email')}}"><br>
-	<input type="password" name="password" placeholder="Password" required ><br>
-	<input type="password" name="password_confirmation" id="password_confirmation" placeholder="Password Confirmation" required ><br><br>
-	<button>Register</button><br><br>
+	<input class="regist" type="text" name="firstName" placeholder="First Name" required value="{{old('firstName')}}"><br>
+	<input class="regist" type="text" name="lastName" placeholder="Last Name" required value="{{old('lastName')}}"><br>
+	<input class="regist" type="email" name="email" placeholder="E-mail" required value="{{old('email')}}"><br>
+	<input class="regist" type="password" name="password" placeholder="Password" required ><br>
+	<input class="regist" type="password" name="password_confirmation" id="password_confirmation" placeholder="Password Confirmation" required ><br><br>
+	<button class="btnSubm">Register</button><br><br>
 </form>
 @include('layouts.errors')
 @include('layouts.session')
+	</div>
+</div>
+
 @endsection

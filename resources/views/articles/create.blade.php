@@ -2,20 +2,22 @@
 @section('title', 'Create a new article')
 @section('content')
 
-<b><i>Create an article</i></b><hr>
+<span class="h1"><i>New article</i></span>
+<div class="main"><hr>
+<div class="show">
 
 <form method="POST" action="/articles">
-    @csrf
-<label for="category">Select a category:</label>
+@csrf
+<div class="custom-select" style="width:200px;">
 <select name="category">
 @foreach($categories as $category)
 	<option value="{{$category->id}}">{{$category->name}}</option>
 @endforeach
-
-</select><br><br>
-<input type="text" name="title" placeholder="Article title" required value="{{old('title')}}"><br><br>
-<textarea name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
-<button type="submit">Create</button>
+</select>
+</div>
+<input class="regist" type="text"  name="title" placeholder="Title" required value="{{old('title')}}"><br><br>
+<textarea class="textarea" name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
+<button class="btnSubm" type="submit">Create</button>
 </form><br>
 @include('layouts.errors')
 <table align="center">
@@ -41,6 +43,8 @@
 
 </table><br>
 
- <a href="/logout"><button>Logout</button></a>
+ <a href="/logout"><button class="btnSubm">Logout</button></a>
  @include('layouts.session')
+ </div>
+</div>
 @endsection

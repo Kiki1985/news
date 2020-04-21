@@ -15,12 +15,17 @@ class SubscribersController extends Controller
         return view('subscribers');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $subscriber = Subscriber::create(request()->validate([
-            'name' => 'required|min:3|max:25',
-            'email' => 'required|min:3|max:25'
-        ]));
+        $email = $request->email;
+        if (Subscriber::where('email', $email)->exists())
+        {
+            return redirect()->back()->with('message', 'The email address you have entered is already registered.');            
+        } else {
+            $subscriber = Subscriber::create(request()->validate([
+                'email' => 'required|min:3|max:25'
+            ]));
+        }
         return back()->with('message','Thank You for subscribing!');
     }
 }

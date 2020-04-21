@@ -10,7 +10,7 @@ Route::get('/{category:name}/{article:title}', 'ArticlesController@show');
 
 Route::get('/{category:name}/{article:title}/edit', 'ArticlesController@edit');
 
-Route::patch('/{category:name}/{article:title}', 'ArticlesController@update');
+Route::put('/{category:name}/{article:title}', 'ArticlesController@update');
 
 Route::delete('/{category:name}/{article:title}', 'ArticlesController@destroy');
 
@@ -29,7 +29,7 @@ Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 
 
-Route::get('/subscribers', 'SubscribersController@create');
+
 
 Route::post('/subscribers', 'SubscribersController@store');
 
