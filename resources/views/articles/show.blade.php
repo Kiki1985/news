@@ -32,15 +32,48 @@
             </p>
         @endcan
         </div>
-    </div>    
-        <div class="replay"><span><i>Leave a Replay</i></span><hr>
-        <p style="">Your comment here: </p>
+    </div> 
 
-        <form>
-            <textarea class="textarea" placeholder="Comment:"></textarea>
-            <button class="btnSubm">Submit Comment</button></a>
-        </form>
+
+
+<div class="replay">
+@if($article->comments->count() > 0)
+    <span>
+      <i>{{$article->comments->count()}} 
+         @if($article->comments->count() == 1)
+         Response
+         @else
+         Responses
+         @endif
+      </i>
+    </span><hr>
+@endif
+
+    <div class="comments">
+        <ul class="list-group">
+        @foreach($article->comments as $comment)
+            <li class="list-group-item">
+            <p><i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i></p>
+             <p>{{$comment->body}}</p><hr class="hr2"> 
+        @endforeach 
+        <li>@include('layouts.session')</li>  
+        </ul>
     </div>
+    
+</div>    
+
+<div class="replay"><span><i>Leave a Replay</i></span><hr style="margin-bottom: 55px">
+    <p>Your comment here: </p>
+
+    <form method="POST" action="/articles/{{$article->id}}/comments">
+    @csrf
+        <textarea name="body" class="textarea" placeholder="Comment:" required></textarea>
+        <button class="btnSubm">Submit Comment</button></a>
+    </form>
+
+    @include('layouts.errors')
+
+</div>
      
 </div>
 @endsection

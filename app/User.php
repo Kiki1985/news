@@ -55,4 +55,9 @@ class User extends Authenticatable
             'body' => $article->body
         ])->categories()->attach($article->category);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'author_id')->latest();
+    }
 }

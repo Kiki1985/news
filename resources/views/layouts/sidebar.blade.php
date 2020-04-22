@@ -43,7 +43,7 @@
                 <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
                 <p><i>26 minutes ago</i></p>
             </div>
-           <hr id="hr2">
+           <hr class="hr2">
            </article>
         @endfor
         

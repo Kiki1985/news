@@ -43,7 +43,7 @@
 
     @endcan
     </div>
-    <hr id="hr2">
+    <hr class="hr2">
     
     @endforeach
 @endforeach

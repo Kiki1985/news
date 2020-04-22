@@ -47,4 +47,19 @@ class Article extends Model
             'body' => $article->body
         ]);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function addComment($body)
+    {
+        //$this->comments()->create(compact('body'));
+        Comment::create([
+            'body'=>request('body'),
+            'author_id' => auth()->user()->id,
+            'article_id' => $this->id
+        ]);
+    }
 }
