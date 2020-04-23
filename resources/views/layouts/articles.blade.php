@@ -16,7 +16,7 @@
             <a href="/{{$category->name}}"><div class="imgCateg"><i>{{ucfirst($category->name)}}</i></div></a>
         </div>
 
-        <h2 id="h2">
+        <h2>
             <a href="/{{$category->name}}/{{$article->title}}">{{ucfirst(str_replace('-', ' ', $article->title))}}</a>
         </h2>
 

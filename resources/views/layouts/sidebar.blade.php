@@ -31,18 +31,23 @@
         <span><i>Latest news</i></span>
         <hr>
 
-        @for ($i = 0; $i < 3; $i++)
+        @foreach($latestNews as $article)
+    @foreach($article->categories as $category)
+            
             <article>
             <div>
                 <img src="/img/news.jpg" alt="&#9786" width="160"  height="120">
             </div>
 
             <div>
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-                <p><i>26 minutes ago</i></p>
+            <h2>
+            <a href="/{{$category->name}}/{{$article->title}}">{{ucfirst(str_replace('-', ' ', $article->title))}}</a>
+            </h2>
+                <p><i>{{$article->created_at->diffForHumans()}}</i></p>
             </div>
-           <hr class="hr2">
-           </article>
-        @endfor
+            <hr class="hr2">
+            </article>
+            @endforeach 
+        @endforeach
         
     </aside>  

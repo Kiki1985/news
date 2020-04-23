@@ -34,7 +34,8 @@ class AppServiceProvider extends ServiceProvider
             $date = Carbon::now();
             $networks = ['facebook', 'twitter', 'google', 'youtube', 'feed'];
             $archives = Article::archives();
-            $view->with(compact("categories", "date", "networks", "archives"));
+            $latestNews = Article::latest()->get();
+            $view->with(compact("categories", "date", "networks", "archives", "latestNews"));
         });
 
         view()->composer("layouts.articles", function ($view) {

@@ -270,6 +270,7 @@ article{
 
 article div{
     float: left;
+    width: 100%;
 }
 
 footer{
