@@ -31,7 +31,7 @@
         <span><i>Latest news</i></span>
         <hr>
 
-        @foreach($latestNews as $article)
+        @foreach($latestNews->slice(0,4) as $article)
     @foreach($article->categories as $category)
             
             <article>
