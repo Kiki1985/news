@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
             $categories = Category::has('articles')->pluck('name');
             $date = Carbon::now();
             $networks = ['facebook', 'twitter', 'google', 'youtube', 'feed'];
-            $view->with(compact("categories", "date", "networks"));
+            $archives = Article::archives();
+            $view->with(compact("categories", "date", "networks", "archives"));
         });
 
         view()->composer("layouts.articles", function ($view) {

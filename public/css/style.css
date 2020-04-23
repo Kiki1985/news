@@ -289,7 +289,7 @@ footer input[type=email]{
 
 #tags{
     width: 32%;
-    margin-left: 2%;
+    margin-left: 6%;
     margin-bottom: 2%;
     float: left;
     
@@ -319,12 +319,25 @@ footer .categories li{
 
 footer .categories a{
     color:#0080ff;
-    
 }
 
 footer .tag:hover{
     opacity: 0.7;
     
+}
+
+#archives{
+    float: left;
+}
+
+#archives li{
+    margin-bottom: 12px;
+    font-size: small;
+    display: block;
+}
+
+#archives a{
+    color:#0080ff;
 }
 
 footer #logo{
@@ -392,6 +405,10 @@ footer .follow{
 
 .replay span{
     font-size: 30px;
+}
+
+.replay hr{
+    margin-bottom: 55px;
 }
 
 .comments{

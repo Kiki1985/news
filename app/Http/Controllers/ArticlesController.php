@@ -10,6 +10,8 @@ use App\Article;
 
 use App\Category;
 
+
+
 class ArticlesController extends Controller
 {
     public function index(Article $article)
@@ -18,7 +20,11 @@ class ArticlesController extends Controller
         $article->addCategory($categories);
     
         $category = (object)array("name"=>"news");
-        $articles = Article::latest()->get();
+
+        $articles = Article::latest()
+            ->filter(request(['month', 'year']))
+            ->get();
+
         return view('index', compact('articles', 'category'));
     }
 

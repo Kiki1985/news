@@ -24,9 +24,7 @@
             <input class="btnSubm" type="submit" value="Subscribe"> 
             <input type="email" name="email" size="1" placeholder="Your E-mail" required value="{{old('email')}}">
         </form>
-        @if (session('message'))
-        <p>{{ session('message') }}
-        @endif
+        @include('layouts.session')
     </aside> 
 
     <aside>

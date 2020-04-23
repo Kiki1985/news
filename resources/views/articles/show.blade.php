@@ -62,7 +62,7 @@
     
 </div>    
 
-<div class="replay"><span><i>Leave a Replay</i></span><hr style="margin-bottom: 55px">
+<div class="replay"><span><i>Leave a Replay</i></span><hr>
     <p>Your comment here: </p>
 
     <form method="POST" action="/articles/{{$article->id}}/comments">

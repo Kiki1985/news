@@ -8,6 +8,8 @@ use App\Subscriber;
 
 use App\Events\ArticleCreated;
 
+use Carbon\Carbon;
+
 class Article extends Model
 {
     public function user()
@@ -61,5 +63,25 @@ class Article extends Model
             'author_id' => auth()->user()->id,
             'article_id' => $this->id
         ]);
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        if (isset($filters["month"])) {
+            $query->whereMonth('created_at', Carbon::parse($filters['month'])->month);
+        }
+
+        if (isset($filters["year"])) {
+            $query->whereYear('created_at', $filters['year']);
+        }
+    }
+
+    public static function archives()
+    {
+        return static::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get()
+            ->toArray();
     }
 }

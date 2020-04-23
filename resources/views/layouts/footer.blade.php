@@ -18,6 +18,22 @@
         </ul>
     </aside>
 
+    <div id="archives">
+        <h3>Archives</h3>
+        <ul>
+
+        @foreach($archives as $stats)
+          <li>
+            <i>
+              <a href="/?month={{$stats['month']}}&year={{$stats['year']}}">
+                {{$stats['month'] . ' ' . $stats['year']}}
+              </a>
+            </i>
+          </li>
+        @endforeach  
+        </ul>
+    </div>
+
     <aside id="tags">
         <h3>Tags</h3>
 
