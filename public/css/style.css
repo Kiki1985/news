@@ -7,7 +7,7 @@ body{
     max-width: 1790px
 }
 
-h2{
+h2, h5{
     font-family: "Noto Sans", sans-serif;
 }
 
@@ -121,7 +121,7 @@ a{
     width: 100%;
     min-width: 200px; 
     max-width: 64%;
-    min-height: 800px;
+    min-height: 2100px;
 }
 
 #article{
@@ -146,6 +146,7 @@ a{
     background-color: yellow; 
     padding-left: 5px;
     padding-right:5px;
+    width: auto;
 }
 
 #edit{
@@ -460,10 +461,6 @@ footer .follow{
     padding-top: 30px;
 }
 
-#index h2:hover{
-    opacity: 0.7
-}
-
 #bigRight{
     width: 49.7%; 
     float: left; 
@@ -621,14 +618,33 @@ select{
     width: 100%;
   }
 
+  aside:nth-of-type(5){
+    float: left;
+    min-width: 60%;
+    width: 100%;
+  }
+
+
+
   aside article{
-    max-width: 49%;
+    width: 49%;
     padding-right: 2%;
     float: left;
     text-align: left;
   }
 
-  aside article:nth-of-type(2){
+  aside:nth-of-type(6){
+    float: left;
+    min-width: 60%;
+    width: 100%;
+  }
+
+  #recentComm{
+    width: 100%;
+    text-align: center;
+  }
+
+  aside article:nth-of-type(even){
     padding-right: 0;
   }
 
@@ -648,7 +664,7 @@ select{
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
 
     #bigTitle{
         font-size:16px;
@@ -680,7 +696,7 @@ select{
     }
 
     aside article{
-        max-width: 100%;
+        width: 100%;
     }
 
     footer .categories{

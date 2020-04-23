@@ -6,6 +6,8 @@ use App\Category;
 
 use App\Article;
 
+use App\Comment;
+
 use Carbon\Carbon;
 
 use Illuminate\Support\ServiceProvider;
@@ -35,7 +37,11 @@ class AppServiceProvider extends ServiceProvider
             $networks = ['facebook', 'twitter', 'google', 'youtube', 'feed'];
             $archives = Article::archives();
             $latestNews = Article::latest()->get();
-            $view->with(compact("categories", "date", "networks", "archives", "latestNews"));
+            $recentComments = Comment::latest()->get();
+            $topComments = Article::withCount('comments')
+                ->orderBy('comments_count', 'desc')
+                ->get();
+            $view->with(compact("categories", "date", "networks", "archives", "latestNews", "recentComments", "topComments"));
         });
 
         view()->composer("layouts.articles", function ($view) {
