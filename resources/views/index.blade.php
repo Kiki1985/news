@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 
-@section('title', $category->name)
+@section('title', ucfirst($category->name))
 @section('content')
 @include('layouts.articles')
 

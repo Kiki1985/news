@@ -10,7 +10,9 @@
         <li><i><a href="#">{{auth()->user()->fName}}</a></i></li>
         <li><i><a href="/logout">Logout</a></i></li>
         <li><i><a href="/articles/create">New article</a></i></li>
+      </ul>
       @else
+      <ul>
         <li><i><a href="/login">Login</a></i></li>
         <li><i><a href="/register">Register</a></i></li>
       </ul>
@@ -21,6 +23,10 @@
   <span id="logo"><a href="/"><i>News</i><b>Test</b></a></span>
     
   <nav id="down">
+  <div id="divNav" style="overflow: auto;
+              margin: 0 auto;
+              max-width: 1790px;
+              transition: padding 300ms ease;">
     <div class="categories">
       <ul>
         <li><b><a href="/">News</a></b></li>
@@ -32,7 +38,7 @@
 
     <aside class="follow">
 
-      <div id="networks"">
+      <div id="networks">
         <ul>
         @foreach($networks as $network)
           <li><a href="#" class="fa fa-{{$network}}"></a></li>
@@ -40,5 +46,7 @@
         </ul>
       </div>
     </aside>
+  </div>
   </nav> <!-- end nav id=down -->
 </header>
+

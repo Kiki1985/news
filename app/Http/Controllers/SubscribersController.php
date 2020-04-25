@@ -17,14 +17,17 @@ class SubscribersController extends Controller
 
     public function store(Request $request)
     {
-        $email = $request->email;
+      $email = $request->input('email');
+       
         if (Subscriber::where('email', $email)->exists()) {
-            return redirect()->back()->with('message', 'The email address is already registrated.');
+            $msg = 'Email adress is already  registered.';
+            return response()->json(array($msg), 200);
         } else {
-            $subscriber = Subscriber::create(request()->validate([
+            $msg = 'Thank You for subscribing!';
+            Subscriber::create(request()->validate([
                 'email' => 'required|min:3|max:25'
             ]));
         }
-        return back()->with('message', 'Thank You for subscribing!');
+            return response()->json(array($msg), 200);
     }
 }

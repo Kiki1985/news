@@ -37,7 +37,7 @@
 
 
 <div class="replay">
-@if($article->comments->count() > 0)
+@if(count($article->comments))
     <span>
       <i>{{$article->comments->count()}} 
          @if($article->comments->count() == 1)

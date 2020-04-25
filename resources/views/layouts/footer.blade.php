@@ -1,12 +1,9 @@
 <footer>
     <aside class="subscription">
         <span><i>Get latest news delivered daily!</i></span>
-        <p>We will send you breaking news right to your inbox</p>
-        <form method="POST" action="/subscribers">
-        @csrf
-            <input type="email" name="email" placeholder="Your E-mail" required value="{{old('email')}}">
-            <input class="btnSubm" type="submit" value="Subscribe">
-        </form>
+        <p class="subsMsg">We will send you breaking news right to your inbox</p>
+        <input class="btnSubm" type="submit" value="Subscribe">
+        <input type="email" name="email" placeholder="Your E-mail" required>
     </aside>
 
     <aside class="categories">
