@@ -48,13 +48,14 @@
 @endif
 
     <div class="comments">
-        <ul class="list-group">
+        <ul id="myList" class="list-group">
         @foreach($article->comments as $comment)
             <li class="resp">
             <p><i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i></p>
              <p>{{$comment->body}}</p><hr class="hr2"> 
         @endforeach 
         </ul>
+    <button id="loadMore" class="btnSubm">Load More</button>
     </div>
     
 </div>    

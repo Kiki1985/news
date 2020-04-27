@@ -417,6 +417,14 @@ footer .follow{
 
 }
 
+.resp{
+    display:none;
+}
+
+.resp p{
+    width: 977px;
+}
+
 .textarea{
     width: 90%; 
     min-height: 50px;

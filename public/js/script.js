@@ -62,6 +62,7 @@ $.ajaxSetup({
 
             $('.list-group').prepend("<li class='resp'><p><i>By "+fName+"</i> <i class='createdAt'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
             $('.textarea').val('');
+            $('.resp').first().slideToggle("fast");
             resp = $('.resp').length;
             $('#r').text(resp+ " Response");
                 if(resp > 1){
@@ -83,6 +84,22 @@ $.ajaxSetup({
         });
 
     });
+
+   
+    
+    $(".resp").slice(0, 3).show();
+    $('#loadMore').click(function (e) {
+        e.preventDefault();
+        $(".resp:hidden").slice(0, 3).slideDown();
+        if ($(".resp:hidden").length == 0) {
+            $("#load").slideToggle('fast');
+        }
+        
+    });
+    
+    
+
+
 
 
     $(window).scroll(function(){ 
