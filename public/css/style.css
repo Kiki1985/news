@@ -420,7 +420,7 @@ footer .follow{
 .textarea{
     width: 90%; 
     min-height: 50px;
-    height: 350px;
+    height: 150px;
     max-height: 550px;
     resize: vertical;
     background: #efefef;

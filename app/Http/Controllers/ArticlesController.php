@@ -10,8 +10,6 @@ use App\Article;
 
 use App\Category;
 
-
-
 class ArticlesController extends Controller
 {
     public function index(Article $article)
@@ -31,7 +29,7 @@ class ArticlesController extends Controller
     public function create()
     {
         abort_unless(auth()->user(), 403);
-
+        
         return view('articles.create', [
             'articles' => auth()->user()->articles,
             'categories' => Category::all()
@@ -48,8 +46,7 @@ class ArticlesController extends Controller
     }
     
     public function show($category, Article $article)
-    {
-
+    {   
         return view('articles.show', compact('article', 'category'));
     }
 

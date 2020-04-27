@@ -34,12 +34,10 @@
         </div>
     </div> 
 
-
-
 <div class="replay">
 @if(count($article->comments))
     <span>
-      <i>{{$article->comments->count()}} 
+      <i id="r">{{$article->comments->count()}} 
          @if($article->comments->count() == 1)
          Response
          @else
@@ -52,28 +50,27 @@
     <div class="comments">
         <ul class="list-group">
         @foreach($article->comments as $comment)
-            <li class="list-group-item">
+            <li class="resp">
             <p><i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i></p>
              <p>{{$comment->body}}</p><hr class="hr2"> 
         @endforeach 
-        <li>@include('layouts.session')</li>  
         </ul>
     </div>
     
 </div>    
 
 <div class="replay"><span><i>Leave a Replay</i></span><hr>
-    <p>Your comment here: </p>
 
-    <form method="POST" action="/articles/{{$article->id}}/comments">
-    @csrf
-        <textarea name="body" class="textarea" placeholder="Comment:" required></textarea>
-        <button class="btnSubm">Submit Comment</button></a>
-    </form>
+    <p id="pComm">Your comment here: </p>
+        <textarea id="replayBody" 
+        @if(auth()->user())
+        data-user="{{auth()->user()->fName}} {{auth()->user()->lName}}"
+        data-id="{{$article->id}}"
+        @endif 
+        name="body" class="textarea" placeholder="Comment:" required></textarea>
 
-    @include('layouts.errors')
-
-</div>
+        <button id="commentSubm" class="btnSubm">Submit Comment</button></a>
+    </div>
      
 </div>
 @endsection
