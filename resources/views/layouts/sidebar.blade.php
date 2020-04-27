@@ -71,13 +71,10 @@
 </aside>
 
 <aside>
-@if(count($recentComments))
-    <i>Recent comments</i></span>
+    <span><i>Recent comments</i></span>
     <hr>
-@endif
-    
     <article id="recentComm">
-        <ul>
+        <div>
         @foreach($recentComments->slice(0,4) as $comment)
         <i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i>
         <a href="/news/{{$comment->article->title}}"><h5 style="font-size: 20px; margin-top: 10px">{{rtrim(ucwords(substr($comment->body,0,60)), '.')}} ...</h5></a><hr class="hr2">
