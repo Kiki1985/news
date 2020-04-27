@@ -61,6 +61,15 @@ $.ajaxSetup({
                     $('#myList').append('<button id="loadMore" class="btnSubm">Load More</button>')
                 }
 
+                if( !$.trim( $('#recentComm ul').html() ).length ) {
+                    $('<span><i>Recent comments</i></span><hr>').insertBefore('#recentComm');
+                }
+
+
+                $('#recentComm ul').prepend('<li><p><i>By '+fName+' <i class="createdAt">now</i></i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
+
+
+
             $('.list-group').prepend("<li class='resp'><p><i>By "+fName+"</i> <i class='createdAt'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
             $('.textarea').val('');
             $('.resp').first().slideToggle("fast");
@@ -71,6 +80,8 @@ $.ajaxSetup({
 
                 }
             $('.createdAt').first().data("data-date", data[0].created_at); 
+
+            $('#recentComm .createdAt').first().data("data-date", data[0].created_at); 
            
             currentDate = new Date();
             $(".createdAt").each(function(){

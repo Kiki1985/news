@@ -70,15 +70,19 @@
         @endforeach
 </aside>
 
-<aside>
+<aside style="clear: both;">
+@if(count($recentComments))
     <span><i>Recent comments</i></span>
     <hr>
+@endif
     <article id="recentComm">
         <div>
+        <ul>
         @foreach($recentComments->slice(0,4) as $comment)
-        <i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i>
-        <a href="/news/{{$comment->article->title}}"><h5 style="font-size: 20px; margin-top: 10px">{{rtrim(ucwords(substr($comment->body,0,60)), '.')}} ...</h5></a><hr class="hr2">
+        <li><p><i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i></p>
+        <a href="/news/{{$comment->article->title}}"><h5 id="h5">{{rtrim(ucwords(substr($comment->body,0,60)), '.')}}</h5></a><hr class="hr2"></li>
         @endforeach
+        </ul>
         </div> 
     </article> 
 </aside>
