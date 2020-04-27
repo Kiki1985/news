@@ -60,7 +60,7 @@ $.ajaxSetup({
                     $('.replay:first').prepend('<span><i id="r">'+resp+' Response</i></span><hr>');
                 }
 
-            $('.list-group').append("<li class='resp'><p><i>By "+fName+"</i> <i class='createdAt'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
+            $('.list-group').prepend("<li class='resp'><p><i>By "+fName+"</i> <i class='createdAt'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
             $('.textarea').val('');
             resp = $('.resp').length;
             $('#r').text(resp+ " Response");
@@ -68,7 +68,7 @@ $.ajaxSetup({
                    $('#r').text(resp+ " Responses"); 
 
                 }
-            $('.createdAt').last().data("data-date", data[0].created_at); 
+            $('.createdAt').first().data("data-date", data[0].created_at); 
            
             currentDate = new Date();
             $(".createdAt").each(function(){
