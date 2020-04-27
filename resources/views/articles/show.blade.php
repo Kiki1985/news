@@ -55,7 +55,9 @@
              <p>{{$comment->body}}</p><hr class="hr2"> 
         @endforeach 
         </ul>
+    @if(count($article->comments))
     <button id="loadMore" class="btnSubm">Load More</button>
+    @endif
     </div>
     
 </div>    

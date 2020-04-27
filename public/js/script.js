@@ -58,6 +58,7 @@ $.ajaxSetup({
                 if( !$.trim( $('.list-group').html() ).length ) {
                     resp = 1;
                     $('.replay:first').prepend('<span><i id="r">'+resp+' Response</i></span><hr>');
+                    $('#myList').append('<button id="loadMore" class="btnSubm">Load More</button>')
                 }
 
             $('.list-group').prepend("<li class='resp'><p><i>By "+fName+"</i> <i class='createdAt'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
