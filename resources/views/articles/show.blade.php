@@ -10,7 +10,16 @@
         @foreach($article->categories as $category)
             <i class="categoryTag"><a href="/{{$category->name}}">{{$category->name}}</a></i>
         @endforeach
-        <p><i>By {{$article->user->fName}} {{$article->user->lName}} &nbsp {{$article->created_at->diffForHumans()}}</i></p> 
+        <p>
+          <i class="commentsI">By </i> 
+          <i class="commentsI">{{$article->user->fName}} {{$article->user->lName}}</i>
+          <i class="fa fa-clock-o"></i>
+          <i class="commentsI">{{$article->created_at->diffForHumans()}}</i>
+          @if(count($article->comments))
+          <i class="fa fa-comments-o"></i>
+          <i class="commentsI comm">comments {{$article->comments->count()}}</i>
+          @endif
+        </p> 
 
         <div id="showImg">
             <img src="/img/news.jpg" alt="&#9786" width="100%">

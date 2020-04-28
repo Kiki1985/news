@@ -388,6 +388,18 @@ footer .follow{
     font-size: 50px
 }
 
+.show p i{
+    font-size: 18px;
+}
+
+.show p .fa{
+    font-size: 18px;
+    background-color: white; 
+    color: #a4a4a4;
+}
+
+
+
 .categoryTag{
     color: black;
     background-color: yellow;

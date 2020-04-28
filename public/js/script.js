@@ -58,6 +58,7 @@ $.ajaxSetup({
                 if( !$.trim( $('.list-group').html() ).length ) {
                     resp = 1;
                     $('.replay:first').prepend('<span><i id="r">'+resp+' Response</i></span><hr>');
+                    $('.show p:first').append('<i class="fa fa-comments-o"></i><i class="commentsI comm"> comments '+resp+'</i>')
                 }
 
                 if( !$.trim( $('#recentComm ul').html() ).length ) {
@@ -77,7 +78,8 @@ $.ajaxSetup({
                 resp = $('.resp').length;
                 $('#r').text(resp+ " Response");
                     if(resp > 1){
-                       $('#r').text(resp+ " Responses"); 
+                       $('#r').text(resp+ " Responses");
+                       $('.show .comm').text(' comments '+resp); 
 
                     }
                 $('.createdAt').first().data("data-date", data); 
