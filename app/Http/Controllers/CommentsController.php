@@ -19,6 +19,6 @@ class CommentsController extends Controller
             'author_id' => auth()->user()->id,
             'article_id' => request('article_id')
         ]);
-    	return response()->json(array($comment), 200);
+    	return response()->json(array($comment->created_at), 200);
     }
 }

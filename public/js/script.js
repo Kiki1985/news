@@ -80,9 +80,9 @@ $.ajaxSetup({
                        $('#r').text(resp+ " Responses"); 
 
                     }
-                $('.createdAt').first().data("data-date", data[0].created_at); 
+                $('.createdAt').first().data("data-date", data); 
 
-                $('#recentComm .createdAt').first().data("data-date", data[0].created_at); 
+                $('#recentComm .createdAt').first().data("data-date", data); 
                
                 currentDate = new Date();
                 $(".createdAt").each(function(){
