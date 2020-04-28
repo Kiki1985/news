@@ -65,7 +65,7 @@ $.ajaxSetup({
                 }
 
 
-                $('#recentComm ul').prepend('<li><p><i>By '+fName+' <i class="createdAt">now</i></i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
+                $('#recentComm ul').prepend('<li><p><i class="commentsI">By</i><i class="commentsI"> '+fName+'</i><i class="fa fa-clock-o"></i> <i class="createdAt commentsI">now</i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
 
 
 

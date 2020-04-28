@@ -79,7 +79,14 @@
         <div>
         <ul>
         @foreach($recentComments->slice(0,4) as $comment)
-        <li><p><i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i></p>
+        <li>
+          <p>
+            <i class="commentsI">By</i>
+            <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>
+            <i class="fa fa-clock-o"></i>
+            <i class="commentsI">{{$comment->created_at->diffForHumans()}}</i>
+          </p>
+
         <a href="/news/{{$comment->article->title}}"><h5 id="h5">{{rtrim(ucwords(substr($comment->body,0,60)), '.')}}</h5></a><hr class="hr2"></li>
         @endforeach
         </ul>

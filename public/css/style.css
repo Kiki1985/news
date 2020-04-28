@@ -435,9 +435,15 @@ footer .follow{
     color: #a4a4a4;
 }
 
+#recentComm .fa{
+    font-size:14px; 
+    background-color: white; 
+    color: #a4a4a4;
+}
+
 i.fa {
     padding-right: 0; 
-    padding-left: 40px
+    padding-left: 30px
 }
 
 .commentsI{
