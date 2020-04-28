@@ -58,7 +58,6 @@ $.ajaxSetup({
                 if( !$.trim( $('.list-group').html() ).length ) {
                     resp = 1;
                     $('.replay:first').prepend('<span><i id="r">'+resp+' Response</i></span><hr>');
-                    $('#myList').append('<button id="loadMore" class="btnSubm">Load More</button>')
                 }
 
                 if( !$.trim( $('#recentComm ul').html() ).length ) {
@@ -70,26 +69,28 @@ $.ajaxSetup({
 
 
 
-            $('.list-group').prepend("<li class='resp'><p><i>By "+fName+"</i> <i class='createdAt'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
-            $('.textarea').val('');
-            $('.resp').first().slideToggle("fast");
-            resp = $('.resp').length;
-            $('#r').text(resp+ " Response");
-                if(resp > 1){
-                   $('#r').text(resp+ " Responses"); 
+                $('.list-group').prepend("<li class='resp'><div id='userImg'><img src='/img/noUser.png' alt='&#9786'></div><div id='replayIcon'><a class='fa fa-reply' href=''></a></div><p><i class='commentsI'>By</i><i class='commentsI'> "+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
 
-                }
-            $('.createdAt').first().data("data-date", data[0].created_at); 
 
-            $('#recentComm .createdAt').first().data("data-date", data[0].created_at); 
-           
-            currentDate = new Date();
-            $(".createdAt").each(function(){
-                createdAt =new Date($(this).data("data-date"));
-                diff = ((currentDate - createdAt)/1000).toString();
-                diff = Math.ceil(diff);
-                $(this).text(diff+ " sec ago");
-            });
+                $('.textarea').val('');
+                $('.resp').first().slideToggle("fast");
+                resp = $('.resp').length;
+                $('#r').text(resp+ " Response");
+                    if(resp > 1){
+                       $('#r').text(resp+ " Responses"); 
+
+                    }
+                $('.createdAt').first().data("data-date", data[0].created_at); 
+
+                $('#recentComm .createdAt').first().data("data-date", data[0].created_at); 
+               
+                currentDate = new Date();
+                $(".createdAt").each(function(){
+                    createdAt =new Date($(this).data("data-date"));
+                    diff = ((currentDate - createdAt)/1000).toString();
+                    diff = Math.ceil(diff);
+                    $(this).text(diff+ " sec ago");
+                });
 
             }
             

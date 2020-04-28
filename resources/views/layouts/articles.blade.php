@@ -12,7 +12,7 @@
     <div id="article">
         <div id="divImg">
 
-            <img src='img/news.jpg' alt="&#9786" width="160"  height="120">
+            <img src='/img/news.jpg' alt="&#9786" width="160"  height="120">
             <a href="/{{$category->name}}"><div class="imgCateg"><i>{{ucfirst($category->name)}}</i></div></a>
         </div>
 

@@ -414,20 +414,46 @@ footer .follow{
     font-size: 30px;
 }
 
-.replay hr{
-    margin-bottom: 55px;
+
+
+#comments{
+
 }
 
-.comments{
+#userImg{
+    float: left;
+    margin:0 16px 16px 0;
+}
 
+#replayIcon{
+    float: right;
+}
+
+#comments .fa{
+    font-size:14px; 
+    background-color: white; 
+    color: #a4a4a4;
+}
+
+i.fa {
+    padding-right: 0; 
+    padding-left: 40px
+}
+
+.commentsI{
+    font-size: 14px; 
+    font-family: "Noto Serif", "Times New Roman", Times, serif; 
+    color: #0080ff;
+
+}
+
+.commentsI:first-of-type{ 
+    color: black;
 }
 
 .resp{
+    width: 100%;
     display:none;
-}
-
-.resp p{
-    width: 977px;
 }
 
 .textarea{

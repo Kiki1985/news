@@ -35,7 +35,7 @@
     </div> 
 
 <div class="replay">
-@if(count($article->comments))
+    @if(count($article->comments))
     <span>
       <i id="r">{{$article->comments->count()}} 
          @if($article->comments->count() == 1)
@@ -45,22 +45,35 @@
          @endif
       </i>
     </span><hr>
-@endif
+    @endif
 
-    <div class="comments">
+    <div id="comments">
         <ul id="myList" class="list-group">
         @foreach($article->comments as $comment)
             <li class="resp">
-            <p><i>By {{$comment->user->fName}} {{$comment->user->lName}} {{$comment->created_at->diffForHumans()}}</i></p>
-             <p>{{$comment->body}}</p><hr class="hr2"> 
+                <div id="userImg">
+                    <img src='/img/noUser.png' alt="&#9786" >
+                </div>
+
+                <div id="replayIcon">
+                    <a class="fa fa-reply" href="/"></a>
+                </div>
+                <p>
+                  <i class="commentsI">By</i>
+                  <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>
+                  <i class="fa fa-clock-o"></i>
+                  <i class="commentsI">{{$comment->created_at->diffForHumans()}}</i>
+                </p>
+                <p>{{$comment->body}}</p>
+                <hr class="hr2">
         @endforeach 
         </ul>
-    @if(count($article->comments))
-    <button id="loadMore" class="btnSubm">Load More</button>
-    @endif
-    </div>
+        @if(count($article->comments) > 3)
+        <button id="loadMore" class="btnSubm">Load More</button>
+        @endif
+    </div>  <!-- #comments --> 
     
-</div>    
+</div>   <!-- .replay --> 
 
 <div class="replay"><span><i>Leave a Replay</i></span><hr>
 
