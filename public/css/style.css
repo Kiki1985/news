@@ -398,6 +398,28 @@ footer .follow{
     color: #a4a4a4;
 }
 
+#latestNews .fa{
+    font-size: 18px;
+    background-color: white; 
+    color: #a4a4a4;
+}
+
+#latestNews p i{
+    font-size: 18px;
+}
+
+#smallTitle .fa{
+    font-size: 18px;
+    background-color: transparent; 
+    color: #a4a4a4;
+}
+
+#smallTitle .commentsI{
+    font-size: 18px;
+    color: white;
+}
+
+
 
 
 .categoryTag{

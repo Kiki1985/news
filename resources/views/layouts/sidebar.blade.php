@@ -36,7 +36,12 @@
             <h2>
             <a href="/{{$category->name}}/{{$article->title}}">{{ucfirst(str_replace('-', ' ', $article->title))}}</a>
             </h2>
-                <p><i>{{$article->created_at->diffForHumans()}}</i></p>
+            <p>
+              <i class="commentsI">By </i> 
+              <i class="commentsI">{{$article->user->fName}} {{$article->user->lName}}</i>
+              <i class="fa fa-clock-o"></i>
+              <i class="commentsI">{{$article->created_at->diffForHumans()}}</i>
+            </p>
             </div>
             <hr class="hr2">
             </article>
@@ -62,6 +67,12 @@
                 <h2>
                   {{ucwords(str_replace('-', ' ', $topCom->title))}}
                 </h2>  
+                <p>
+                <i class="commentsI">By </i>
+                <i class="commentsI">{{$topCom->user->fName}} {{$topCom->user->lName}}</i>
+                <i class="fa fa-clock-o"></i>
+                <i class="commentsI">{{$topCom->created_at->diffForHumans()}}</i>
+                </p>
               </div>
             </a>
         </div>
