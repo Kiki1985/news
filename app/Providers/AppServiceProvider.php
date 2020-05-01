@@ -41,7 +41,8 @@ class AppServiceProvider extends ServiceProvider
             $topComments = Article::withCount('comments')
                 ->orderBy('comments_count', 'desc')
                 ->get();
-            $view->with(compact("categories", "date", "networks", "archives", "latestNews", "recentComments", "topComments"));
+            $days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            $view->with(compact("categories", "date", "networks", "archives", "latestNews", "recentComments", "topComments", "days"));
         });
 
         view()->composer("layouts.articles", function ($view) {

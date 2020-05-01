@@ -1,4 +1,5 @@
 $(document).ready(function(){ 
+
 $.ajaxSetup({
     headers:
     { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -100,8 +101,6 @@ $.ajaxSetup({
 
     });
 
-   
-    
     $(".resp").slice(0, 3).show();
     $('#loadMore').click(function (e) {
         e.preventDefault();
@@ -112,11 +111,6 @@ $.ajaxSetup({
         
     });
     
-    
-
-
-
-
     $(window).scroll(function(){ 
         if ($(this).scrollTop() > 400) { 
             $('#scroll').fadeIn(); 
@@ -139,4 +133,71 @@ $.ajaxSetup({
         return false; 
     });
 
+
+let today = new Date();
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
+
+let months = ["January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"];
+
+$('#next').click(function(){
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+    showCalendar(currentMonth, currentYear);
 });
+
+$('#previous').click(function(){
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    showCalendar(currentMonth, currentYear);
+});
+
+showCalendar(currentMonth, currentYear);
+
+function showCalendar(month, year) {
+let firstDay = (new Date(year, month)).getDay();
+let daysInMonth = 32 - new Date(year, month, 32).getDate();
+let prevMonth = month-1;
+let daysPrevMonth = 32 - new Date(year, prevMonth, 32).getDate();
+
+$('#calendar-body').html("");
+$('#monthAndYear').text(months[month] + " " + year);
+let date = 1;
+    for (let i = 0; i < 6; i++) {
+        $('#calendar-body').append("<tr></tr>");
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDay-1) {
+                $('#calendar-body tr').prepend("<td class='day emptyTd'>"+(daysPrevMonth--)+"</td>");
+            }
+            else if (date > daysInMonth) {
+                $('#calendar-body tr:nth-of-type('+(i+1)+')').append("<td class='day'></td>");
+                if($('#calendar-body tr:last-of-type td:first-of-type').is(':empty')){
+                    $('#calendar-body tr:last-of-type').remove();
+                    
+                }
+                
+            }else {
+                $('#calendar-body tr:nth-of-type('+(i+1)+')').append("<td class='day "+date+"'>"+date+"</td>");
+                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                    $('.'+date+'').addClass("bg-info");
+                }
+                date++;
+            }
+
+        }
+    }
+    
+    let emptyTd = $('#calendar-body tr:last-of-type td:empty');
+    emptyTd.addClass('emptyTd')
+    for (let k=1; k <= emptyTd.length; k++) {
+        $('#calendar-body tr:last-of-type td:empty').first().text(k)
+    }
+    
+}
+    
+    
+});
+
+    
+    
+    
