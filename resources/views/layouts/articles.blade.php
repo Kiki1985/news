@@ -29,16 +29,12 @@
     <div style="float: left;">
     @can('update', $article) 
    
-        <div id="edit">
+        <div class="edit-article">
         <a href="/{{$category->name}}/{{$article->title}}/edit"><button class="btnSubm">Edit</button></a>
         </div> 
 
-        <div id="delete">
-        {{--<form method="POST" action="/{{$category->name}}/{{$article->title}}">
-            @method('DELETE')
-            @csrf--}}
+        <div class="delete-article">
             <button class="btnSubm">Delete</button>
-       {{-- </form>  --}}
         </div>
 
     @endcan

@@ -67,6 +67,16 @@
                 <div id="replayIcon">
                     <a class="fa fa-reply" href="/"></a>
                 </div>
+                @can('update', $article) 
+   
+                
+      
+                  <div class="delete-comment" data-id="{{$comment->id}}">
+                    <button class="btnSubm">Delete</button>
+                  </div>
+               
+
+                @endcan
                 <p>
                   <i class="commentsI">By</i>
                   <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>

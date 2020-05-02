@@ -67,11 +67,11 @@ $.ajaxSetup({
                 }
 
 
-                $('#recentComm ul').prepend('<li><p><i class="commentsI">By</i><i class="commentsI"> '+fName+'</i><i class="fa fa-clock-o"></i> <i class="createdAt commentsI">now</i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
+                $('#recentComm ul').prepend('<li data-id="'+data.id+'"><p><i class="commentsI">By</i><i class="commentsI"> '+fName+'</i><i class="fa fa-clock-o"></i> <i class="createdAt commentsI">now</i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
 
 
 
-                $('.list-group').prepend("<li class='resp'><div id='userImg'><img src='/img/noUser.png' alt='&#9786'></div><div id='replayIcon'><a class='fa fa-reply' href=''></a></div><p><i class='commentsI'>By</i><i class='commentsI'> "+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
+                $('.list-group').prepend("<li class='resp'><div id='userImg'><img src='/img/noUser.png' alt='&#9786'></div><div id='replayIcon'><a class='fa fa-reply' href=''></a></div><div class='delete-comment' data-id='"+data.id+"'><button class='btnSubm'>Delete</button></div><p><i class='commentsI'>By</i><i class='commentsI'> "+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
 
 
                 $('.textarea').val('');
@@ -83,9 +83,9 @@ $.ajaxSetup({
                        $('.show .comm').text(' comments '+resp); 
 
                     }
-                $('.createdAt').first().data("data-date", data); 
+                $('.createdAt').first().data("data-date", data.created_at); 
 
-                $('#recentComm .createdAt').first().data("data-date", data); 
+                $('#recentComm .createdAt').first().data("data-date", data.created_at); 
                
                 currentDate = new Date();
                 $(".createdAt").each(function(){
@@ -95,6 +95,7 @@ $.ajaxSetup({
                     $(this).text(diff+ " sec ago");
                 });
 
+                deleteComment();
             }
             
         });
@@ -195,7 +196,7 @@ let date = 1;
     
 }
 
-$('#delete .btnSubm').click(function(){
+$('.delete-article .btnSubm').click(function(){
     let href = $(this).parent().parent().parent().find('.title-href').attr('href');
     $(this).parent().parent().parent().remove();
     $.ajax({
@@ -204,7 +205,39 @@ $('#delete .btnSubm').click(function(){
         data: {'_method': 'DELETE'}
     });
 });
-    
+
+function deleteComment(){
+    $('.delete-comment .btnSubm').click(function(){
+    let url = $(this).parent().attr("data-id");
+    $(this).parent().parent().remove();
+    $('[data-id='+url+']').remove();
+    $.ajax({
+        url: '/comments/'+url+'/delete',
+        type: 'post',
+        data: {'_method': 'DELETE'}
+    });
+
+    resp = $('.resp').length;
+        $('#r').text(resp+ " Response");
+        if(resp > 1){
+            $('#r').text(resp+ " Responses");
+            $('.show .comm').text(' comments '+resp); 
+        }
+        if(resp == 0){
+            $('#r').parent().next().remove();
+            $('#r').parent().remove(); 
+        }
+        if($.trim($("#recentComm ul").html())==''){
+            $('#recentComm').prev().remove();
+        }
+
+    });   
+
+}
+
+deleteComment()
+
+
     
 });
 

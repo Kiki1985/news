@@ -124,7 +124,7 @@ a{
     min-height: 3000px;
 }
 
-#article{
+.article{
     margin-top: 55px;
     margin-bottom: 40px;
 }
@@ -149,12 +149,12 @@ a{
     width: auto;
 }
 
-#edit{
+.edit-article{
     float: left;
     margin-top: 40px;
 }
 
-#delete{
+.delete-article{
     float: left; 
     margin-top: 40px;
     margin-bottom: 40px; 
@@ -533,6 +533,12 @@ footer .follow{
 
 #replayIcon{
     float: right;
+}
+
+.delete-comment{ 
+    float: right; 
+    clear: both; 
+    margin-bottom: 15px;
 }
 
 #comments .fa{

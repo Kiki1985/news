@@ -83,14 +83,16 @@
 
 <aside class="noPadding">
 @if(count($recentComments))
+    <div>
     <span><i>Recent comments</i></span>
     <hr>
+    </div>
 @endif
     <article id="recentComm">
         <div>
         <ul>
         @foreach($recentComments->slice(0,4) as $comment)
-        <li>
+        <li data-id="{{$comment->id}}">
           <p style="margin: 0">
             <i class="commentsI">By</i>
             <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>
