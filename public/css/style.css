@@ -129,7 +129,7 @@ a{
     margin-bottom: 40px;
 }
 
-#divImg{
+.divImg{
     position: relative;
     width: 160px;
     height: 120px;
@@ -862,17 +862,17 @@ select{
         width: 100%;
     }
 
-    #article h2{
+    .article h2{
         float: left;
         width: 100%;
     }
 
-    #article p{
+    .article p{
         float: left;
         width: 100%;
     }
 
-    #divImg{
+    .divImg{
         margin-bottom: 10px;
     }
 

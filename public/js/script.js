@@ -194,6 +194,16 @@ let date = 1;
     }
     
 }
+
+$('#delete .btnSubm').click(function(){
+    let href = $(this).parent().parent().parent().find('.title-href').attr('href');
+    $(this).parent().parent().parent().remove();
+    $.ajax({
+        url: href,
+        type: 'post',
+        data: {'_method': 'DELETE'}
+    });
+});
     
     
 });
