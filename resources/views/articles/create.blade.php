@@ -20,6 +20,7 @@
 <button class="btnSubm" type="submit">Create</button>
 </form><br>
 @include('layouts.errors')
+ @include('layouts.session')
 <table align="center">
 
  <tr>
@@ -44,7 +45,7 @@
 </table><br>
 
  <a href="/logout"><button class="btnSubm">Logout</button></a>
- @include('layouts.session')
+
  </div>
 </div>
 @endsection

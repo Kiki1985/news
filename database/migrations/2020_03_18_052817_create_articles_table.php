@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             'articles', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('author_id');
-                $table->string('title');
+                $table->text('title');
                 $table->text('body');
                 $table->timestamps();
 

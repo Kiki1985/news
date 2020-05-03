@@ -38,11 +38,16 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
+        $title = Str::slug($request->title);
+        
+        if (Article::where('title', $title)->exists()) {
+            return back()->with('message', 'This title already exists.');
+        }else{
         auth()->user()->publish(
             new Article($this->validateArticle())
         );
-
-        return back();
+        return back()->with('message', 'The article is successfully stored.');
+        }
     }
     
     public function show($category, Article $article)
