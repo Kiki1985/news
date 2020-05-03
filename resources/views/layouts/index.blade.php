@@ -7,7 +7,7 @@
         @foreach($articles as $article)
             @foreach($article->first()->categories as $categ)
             <a href="/{{$categ->name}}/{{$articles->first()->title}}">
-                <div id="bigTitle">
+                <div data-title="{{ucwords($articles->first()->title)}}" id="bigTitle">
                     <h2>{{ucwords(str_replace('-', ' ', $articles->first()->title))}}</h2>
                 </div>
             </a>
@@ -16,12 +16,13 @@
     </div> <!-- end of div id=bigRight --> 
     <div id="bigLeft">
     @foreach($categories->slice(0, 4) as $categ)
-        <div class="smallLeft">
+    @foreach($categ->articles->slice(0, 1) as $art)
+        <div data-title="{{ucwords($art->title)}}" class="smallLeft">
             <div class="imgCateg">
                 <a href="/{{$categ->name}}"><i>{{ucfirst($categ->name)}}</i></a>
             </div>
             <img src="/img/news.jpg" alt="&#9786" width="100%">
-            @foreach($categ->articles->slice(0, 1) as $art)
+            
                 <a href="/{{$categ->name}}/{{$art->title}}">
                     <div id="smallTitle">
                         <h2>{{ucwords(str_replace('-', ' ', $art->title))}}</h2>

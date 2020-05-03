@@ -198,6 +198,22 @@ let date = 1;
 
 $('.delete-article .btnSubm').click(function(){
     let href = $(this).parent().parent().parent().find('.title-href').attr('href');
+    let title = $(this).parent().parent().parent().find("h2 a").text();
+    title = title.replace(/ /g,'-');
+   
+    $('#mostComm [data-title='+title+']').next().remove();
+    $('[data-title='+title+']').remove();
+
+    if($.trim($("#recentComm ul").html())==''){
+            $('#recentComm').prev().remove();
+    }
+    if($.trim($("#mostComm").html())==''){
+            $('#mostComm').prev().remove();
+    }
+    if($.trim($("#latNew").html())==''){
+            $('#latNew').prev().remove();
+    }
+    
     $(this).parent().parent().parent().remove();
     $.ajax({
         url: href,

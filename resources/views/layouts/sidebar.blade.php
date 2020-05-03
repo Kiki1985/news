@@ -23,11 +23,16 @@
 </aside> 
 
 <aside id="latestNews" class="noPadding">
+@if(count($latestNews))
+    <div>
     <span><i>Latest news</i></span>
     <hr>
+    </div>
+@endif
+    <div id="latNew">
     @foreach($latestNews->slice(0,4) as $article)
         @foreach($article->categories as $category)
-        <article>
+        <article data-title="{{ucfirst($article->title)}}">
             <div>
                 <img src="/img/news.jpg" alt="&#9786" width="40%">
             </div>
@@ -47,17 +52,21 @@
             </article>
         @endforeach 
     @endforeach
+    </div>
 </aside>  
 
 <aside class="noPadding">
-
+@if(count($topComments))
+    <div>
     <span><i>Most commented</i></span>
     <hr>
-
+    </div>
+@endif
+    <div id="mostComm">
     @foreach($topComments->slice(0,4) as $topCom)
         @foreach($topCom->categories as $categ)
         
-        <div style=" position: relative; margin-top: 55px; margin-bottom: 30px">
+        <div data-title="{{ucwords($topCom->title)}}" style=" position: relative; margin-top: 55px; margin-bottom: 30px">
         <div class="imgCateg">
             <a href="/{{$categ->name}}"><i>{{ucfirst($categ->name)}}</i></a>
         </div>
@@ -77,8 +86,10 @@
             </a>
         </div>
         <hr class="hr2">
+        
             @endforeach
         @endforeach
+    </div>
 </aside>
 
 <aside class="noPadding">
@@ -92,7 +103,7 @@
         <div>
         <ul>
         @foreach($recentComments->slice(0,4) as $comment)
-        <li data-id="{{$comment->id}}">
+        <li data-id="{{$comment->id}}" data-title="{{ucfirst($comment->article->title)}}">
           <p style="margin: 0">
             <i class="commentsI">By</i>
             <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>
