@@ -104,7 +104,7 @@
         <ul>
         @foreach($recentComments->slice(0,4) as $comment)
         <li data-id="{{$comment->id}}" data-title="{{ucfirst($comment->article->title)}}">
-          <p style="margin: 0">
+          <p>
             <i class="commentsI">By</i>
             <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>
             <i class="fa fa-clock-o"></i>

@@ -463,14 +463,26 @@ footer .follow{
     font-size: 50px
 }
 
-.show p i{
+.show li i{
     font-size: 18px;
 }
 
-.show p .fa{
+.show li .fa{
     font-size: 18px;
-    background-color: white; 
+    background-color: transparent; 
     color: #a4a4a4;
+    padding-top: 0;
+}
+
+.show ul form button{
+    padding: 0;
+    margin:0;
+    border: 0;
+}
+
+.show button .fa{
+    padding-right: 15px;
+    cursor: pointer;
 }
 
 #latestNews .fa{
@@ -528,23 +540,36 @@ footer .follow{
 
 #userImg{
     float: left;
-    margin:0 16px 16px 0;
+    margin:0px 16px 16px 0;
 }
 
-#replayIcon{
+.replayIcon{
     float: right;
+    cursor: pointer;
+}
+
+.replayInput{
+    display: none; 
+    width: 100%; 
+    float: left; 
 }
 
 .delete-comment{ 
-    float: right; 
-    clear: both; 
-    margin-bottom: 15px;
+    float: right;  
+    cursor: pointer;
 }
 
 #comments .fa{
     font-size:14px; 
     background-color: white; 
     color: #a4a4a4;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#comments p{
+    margin-top: 9px;
+    margin-bottom: 0;
 }
 
 #recentComm .fa{
@@ -553,9 +578,15 @@ footer .follow{
     color: #a4a4a4;
 }
 
+#recentComm li p{
+    margin: 0;
+}
+
 i.fa {
     padding-right: 0; 
-    padding-left: 30px
+    padding-left: 30px; 
+    color: #a4a4a4;
+    background-color: transparent;
 }
 
 .commentsI{
@@ -572,6 +603,15 @@ i.fa {
 .resp{
     width: 100%;
     display:none;
+}
+
+.resp .btnSubm{
+    float: right; 
+}
+
+.resp .regist{
+    margin-top: 0;
+    width: calc(100% - 173px);
 }
 
 .textarea{

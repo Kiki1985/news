@@ -71,7 +71,7 @@ $.ajaxSetup({
 
 
 
-                $('.list-group').prepend("<li class='resp'><div id='userImg'><img src='/img/noUser.png' alt='&#9786'></div><div id='replayIcon'><a class='fa fa-reply' href=''></a></div><div class='delete-comment' data-id='"+data.id+"'><button class='btnSubm'>Delete</button></div><p><i class='commentsI'>By</i><i class='commentsI'> "+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
+                $('.list-group').prepend("<li class='resp'><div id='userImg'><img src='/img/noUser.png' alt='&#9786'></div><div class='replayIcon repIc fa fa-reply'></div><div class='delete-comment fa fa-trash' data-id='"+data.id+"'></div><p><i class='commentsI'>By</i><i class='commentsI'> "+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><div class='replayInput'><input class='regist' type='text' name='replay' placeholder='Your replay here'><button class='btnSubm'>Submit</button></div><hr class='hr2'></li>");
 
 
                 $('.textarea').val('');
@@ -96,6 +96,9 @@ $.ajaxSetup({
                 });
 
                 deleteComment();
+                $('.repIc').click(function(){
+                    $(this).parent().find('.replayInput').slideToggle('fast');
+                });
             }
             
         });
@@ -106,8 +109,9 @@ $.ajaxSetup({
     $('#loadMore').click(function (e) {
         e.preventDefault();
         $(".resp:hidden").slice(0, 3).slideDown();
+        
         if ($(".resp:hidden").length == 0) {
-            $("#load").slideToggle('fast');
+            $("#loadMore").remove();
         }
         
     });
@@ -223,9 +227,9 @@ $('.delete-article .btnSubm').click(function(){
 });
 
 function deleteComment(){
-    $('.delete-comment .btnSubm').click(function(){
-    let url = $(this).parent().attr("data-id");
-    $(this).parent().parent().remove();
+    $('.delete-comment').click(function(){
+    let url = $(this).attr("data-id");
+    $(this).parent().remove();
     $('[data-id='+url+']').remove();
     $.ajax({
         url: '/comments/'+url+'/delete',
@@ -251,7 +255,15 @@ function deleteComment(){
 
 }
 
-deleteComment()
+deleteComment();
+
+function replay(){
+$('.replayIcon').click(function(){
+    $(this).parent().find('.replayInput').slideToggle('fast');
+});
+}
+
+replay();
 
 
     
