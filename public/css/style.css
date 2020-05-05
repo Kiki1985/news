@@ -503,7 +503,7 @@ footer .follow{
     cursor: pointer;
 }
 
-.show button {
+.show li form button {
     background-color: transparent;
 }
 
