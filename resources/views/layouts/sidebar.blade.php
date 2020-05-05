@@ -118,7 +118,7 @@
     </article> 
 </aside>
 
-<aside class="noPadding" style="clear: both;">
+<aside class="noPadding">
 <span><i>Calendar</i></span>
     <hr>
 
