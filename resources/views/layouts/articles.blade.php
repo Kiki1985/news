@@ -22,23 +22,35 @@
 
         <p>{{substr($article->body,0,200)}} ... <a href="/{{$category->name}}/{{$article->title}}">Read more</a></p>
 
-        <p><i>by {{$article->user->fName}} {{$article->user->lName}}, {{$article->created_at->diffForHumans()}}</i></p>
+        <ul>
+          <li>
+            <i class="commentsI">by</i> 
+            <i class="commentsI">{{$article->user->fName}} {{$article->user->lName}}</i>
+            <i class="fa fa-clock-o"></i>
+            <i class="commentsI">{{$article->created_at->diffForHumans()}}</i>
+          </li>
+          @if(count($article->comments))
+          <li>
+            <i class="fa fa-comments-o"></i>
+            <i class="commentsI comm">comments {{$article->comments->count()}}</i>
+          </li>
+         @endif
+
+          @can('update', $article)
+          
+          <li style="float: right; padding-right: 15px"><form method="POST" action="/{{$category->name}}/{{$article->title}}">
+            @method('DELETE')
+            @csrf
+            <button><i class="fa fa-trash"></i></button>
+          </form>
+          </li>
+          <li style="float: right;">
+            <a href="/{{$category->name}}/{{$article->title}}/edit"><i class="fa fa-edit"></i></a>
+          </li>
+          
+          @endcan
+        </ul>
        
-   
-
-    <div style="float: left;">
-    @can('update', $article) 
-   
-        <div class="edit-article">
-        <a href="/{{$category->name}}/{{$article->title}}/edit"><button class="btnSubm">Edit</button></a>
-        </div> 
-
-        <div class="delete-article">
-            <button class="btnSubm">Delete</button>
-        </div>
-
-    @endcan
-    </div>
     <hr class="hr2">
      </div> <!-- end div article -->
     @endforeach

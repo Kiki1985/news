@@ -8,7 +8,7 @@
     <div class="show">
         <h2>{{ucfirst(str_replace('-', ' ', $article->title))}}</h2>
         @foreach($article->categories as $category)
-            <i class="categoryTag"><a href="/{{$category->name}}">{{$category->name}}</a></i>
+            <i class="categoryTag"><a href="/{{$category->name}}">{{ucfirst($category->name)}}</a></i>
         @endforeach
         <ul style="padding-top: 16px;">
           <li><i class="commentsI">By </i> 
@@ -18,10 +18,9 @@
           @if(count($article->comments))
           <i class="fa fa-comments-o"></i>
           <i class="commentsI comm">comments {{$article->comments->count()}}</i>
-          
           @endif
           </li>
-          <li>
+          
           @can('update', $article)
           
           <li style="float: right;"><form method="POST" action="/{{$category->name}}/{{$article->title}}">
@@ -36,7 +35,7 @@
           
           @endcan
           
-          </li>
+         
         </ul> 
 
 

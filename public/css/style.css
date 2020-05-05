@@ -129,6 +129,24 @@ a{
     margin-bottom: 40px;
 }
 
+.article li i{
+    font-size: 18px;
+}
+
+.article li .fa{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.article li button{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+
+
 .divImg{
     position: relative;
     width: 160px;
@@ -483,6 +501,10 @@ footer .follow{
 .show button .fa{
     padding-right: 15px;
     cursor: pointer;
+}
+
+.show button {
+    background-color: transparent;
 }
 
 #latestNews .fa{
