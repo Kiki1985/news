@@ -10,6 +10,7 @@ class RegistrationController extends Controller
 {
     public function create()
     {
+        session(['link' => url()->previous()]);
         return view('registration.create');
     }
 
@@ -34,7 +35,7 @@ class RegistrationController extends Controller
             ]);
             auth()->login($user);
             session()->flash("message", "Thanks for Signing up");
-            return redirect('/articles/create');
+            return redirect(session('link'));
         }
     }
 }

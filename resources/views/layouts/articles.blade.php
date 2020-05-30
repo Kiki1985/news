@@ -38,11 +38,12 @@
 
           @can('update', $article)
           
-          <li style="float: right; padding-right: 15px"><form method="POST" action="/{{$category->name}}/{{$article->title}}">
-            @method('DELETE')
-            @csrf
-            <button><i class="fa fa-trash"></i></button>
-          </form>
+          <li class="delete-article">
+            <form method="POST" action="/{{$category->name}}/{{$article->title}}">
+              @method('DELETE')
+              @csrf
+              <button><i class="fa fa-trash"></i></button>
+            </form>
           </li>
           <li style="float: right;">
             <a href="/{{$category->name}}/{{$article->title}}/edit"><i class="fa fa-edit"></i></a>

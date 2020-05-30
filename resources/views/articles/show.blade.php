@@ -18,7 +18,12 @@
         <i class="commentsI">{{$article->created_at->diffForHumans()}}</i>
         @if(count($article->comments))
         <i class="fa fa-comments-o"></i>
-        <i class="commentsI comm">comments {{$article->comments->count()}}</i>
+        <?php $resp = 0; ?>
+      @foreach($article->comments as $comment)
+        <?php $resp += $comment->response->count(); ?>
+        
+      @endforeach
+        <i class="commentsI comm">comments {{$article->comments->count()+$resp}}</i>
         @endif
       </li>
       @can('update', $article)
@@ -48,10 +53,20 @@
   </div> <!-- .show  -->
 
   <div class="replay">
+
+
     @if(count($article->comments))
     <span>
-      <i id="r">{{$article->comments->count()}} 
-         @if($article->comments->count() == 1)
+      
+
+      <?php $resp = 0; ?>
+      @foreach($article->comments as $comment)
+        <?php $resp += $comment->response->count(); ?>
+        
+      @endforeach
+      <i id="r">{{$article->comments->count() + $resp}} 
+
+         @if($article->comments->count() + $resp == 1)
          Response
          @else
          Responses
@@ -64,49 +79,112 @@
       <ul id="myList" class="list-group">
       @foreach($article->comments as $comment)
         <li class="resp">
-          <div id="userImg">
-            <img src='/img/noUser.png' alt="&#9786" >
+          <div class="userImg">
+            <img src='/img/noUser.png' alt="&#9786" width="75" >
           </div>
+         @if(auth()->user() && auth()->user()->id !== $comment->user->id)
+         
           <div class="replayIcon fa fa-reply"></div>
-          @can('update', $article) 
-            <div class="delete-comment fa fa-trash" data-id="{{$comment->id}}"></div>
-          @endcan
+          
+         @endif
+          @can('update', $article)
+            
+            <form style="float: right;" method="POST" action="/comments/{{$comment->id}}/delete">
+            @method('DELETE')
+            @csrf
+            <button>
+              <div class="delete-comment fa fa-trash" data-id="{{$comment->id}}"></div>
+            </button>
+            </form>
+           @endcan
           <div>
-            <i class="commentsI">By</i>
+            <i class="commentsI">By </i>
             <i class="commentsI">{{$comment->user->fName}} {{$comment->user->lName}}</i>
             <i class="fa fa-clock-o"></i>
             <i class="commentsI">{{$comment->created_at->diffForHumans()}}</i>
           </div>
           <p>{{$comment->body}}</p>
+         
+        @if(auth()->user() && auth()->user()->id !== $comment->user->id)
 
+         <div class="replayInput">
+            <div class="userImg">
+              <img src="/img/noUser.png" alt="&#9786" width="52">
+            </div>
+            <div class="insertResp">
 
-          <div class="replayInput">
-            <button class="btnSubm">Submit</button>
-            <input class="regist" type="text" name="replay" placeholder="Your replay here">
+            <form method="POST" action="/comments/{{$comment->id}}/responses">
+            @csrf
+              <input name="body" type="text" class="regist" placeholder="@if (session('response')){{ session('response') }} @elseif(count($errors))@foreach($errors->all() as $error){{$error}}@endforeach @else Response:@endif"  >
+              <button class="btnSubm"
+              data-user="{{auth()->user()->fName}} {{auth()->user()->lName}}" 
+              data-comment-id="{{$comment->id}}"
+              >Submit</button>
+            </form>
+            </div>
           </div>
-          
+         
+        @endif
+       
+          <div style="clear: both;">
+          @foreach($comment->response as $response)
+            <div class="commentResp" >
+              <div class="userImg">
+                <img src="/img/noUser.png" alt="&#9786" width="75">
+              </div>
+            @can('update', $article) 
+              {{--<div class="delete-comment fa fa-trash" data-id="{{$response->id}}"></div>--}}
+              <form style="float: right;" method="POST" action="/responses/{{$response->id}}/delete">
+              @method('DELETE')
+              @csrf
+                <button>
+                  <div class="delete-response fa fa-trash" data-id="{{$response->id}}"></div>
+                </button>
+              </form>
+            @endcan
+            <div>
+              <i class="commentsI">By</i>
+              <i class="commentsI">{{$response->user->fName}} {{$response->user->lName}}</i>
+              <i class="fa fa-clock-o"></i>
+              <i class="commentsI">{{$response->created_at->diffForHumans()}}</i>
+            </div>
 
+            <p>{{$response->body}}</p>
+            </div>
+          @endforeach
+          </div>
           <hr class="hr2">
+          
         </li>
       @endforeach 
       </ul>
-      @if(count($article->comments) > 3)
+      {{--@if(count($article->comments) > 3)
       <button id="loadMore" class="btnSubm">Load More</button>
-      @endif
+      @endif--}}
     </div>  <!-- #comments --> 
   </div>   <!-- .replay --> 
 
-<div class="replay"><span><i>Leave a Replay</i></span><hr>
+  <div class="replay"><span><i>Leave a Replay</i></span><hr>
 
-    <p id="pComm">Your comment here: </p>
+    <p id="pComm">
+    @if(auth()->user())
+    Your comment here:
+    @else
+    You must <a href="/login"><i>Login</i></a> or <a href="/register"><i>Register</i></a> for commenting
+    @endif
+     </p>
+    <form method="POST" action="/articles/{{$article->id}}/comments">
+    @csrf
         <textarea id="replayBody" 
         @if(auth()->user())
         data-user="{{auth()->user()->fName}} {{auth()->user()->lName}}"
         data-id="{{$article->id}}"
         @endif 
-        name="body" class="textarea" placeholder="Comment:" required></textarea>
-
+        name="body" class="textarea" 
+        placeholder="@if (session('message')){{ session('message') }} @elseif(count($errors))@foreach($errors->all() as $error){{$error}}@endforeach @else Comment:@endif" 
+        ></textarea>
         <button id="commentSubm" class="btnSubm">Submit Comment</button></a>
+      </form>
     </div>
      
 </div>

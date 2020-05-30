@@ -16,10 +16,22 @@
 </aside>
     
 <aside class="subscription">
+    
     <span><i>Get latest news delivered daily!</i></span>
+    
+
+    @if (session('msg'))
+        <p class="subsMsg">{{ session('msg') }}</p>
+    @else
     <p class="subsMsg">We will send you breaking news right to your inbox</p>
-    <input class="btnSubm" type="submit" value="Subscribe"> 
-    <input type="email" name="email" size="1" placeholder="Your E-mail" required >
+    @endif
+
+    <form method="POST" action="/subscribers">
+    @csrf
+      <input class="btnSubm" type="submit" value="Subscribe"> 
+      <input type="email" name="email" size="1" placeholder="@if(count($errors))@foreach($errors->all() as $error){{$error}}@endforeach @else Your e-mail @endif" required>
+    </form>
+
 </aside> 
 
 <aside id="latestNews" class="noPadding">

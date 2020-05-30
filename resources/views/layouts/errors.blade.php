@@ -1,5 +1,5 @@
 @if(count($errors))
 @foreach($errors->all() as $error)
-    <p>{{$error}}</p>
+    {{$error}}
 @endforeach
 @endif

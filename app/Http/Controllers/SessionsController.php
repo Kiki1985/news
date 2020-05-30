@@ -13,6 +13,7 @@ class SessionsController extends Controller
 
     public function create()
     {
+        session(['link' => url()->previous()]);
         return view('sessions.create');
     }
 
@@ -21,12 +22,12 @@ class SessionsController extends Controller
         if (! auth()->attempt(request(['email', 'password']))) {
             return back()->with('message', 'Please check your credentials and try again.');
         }
-        return redirect('/');
+        return redirect(session('link'));
     }
     public function destroy()
     {
         auth()->logout();
-
-        return redirect('/')->with('message', 'You have successfully logged out!');
+        session(['link' => url()->previous()]);
+        return redirect(session('link'));
     }
 }

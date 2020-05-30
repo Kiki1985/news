@@ -21,7 +21,7 @@ class ArticlesController extends Controller
 
         $articles = Article::latest()
             ->filter(request(['month', 'year']))
-            ->get(); 
+            ->get();
 
         return view('index', compact('articles', 'category'));
     }
@@ -42,16 +42,16 @@ class ArticlesController extends Controller
         
         if (Article::where('title', $title)->exists()) {
             return back()->with('message', 'This title already exists.');
-        }else{
-        auth()->user()->publish(
-            new Article($this->validateArticle())
-        );
-        return back()->with('message', 'The article is successfully stored.');
+        } else {
+            auth()->user()->publish(
+                new Article($this->validateArticle())
+            );
+            return back()->with('message', 'The article is successfully stored.');
         }
     }
     
     public function show($category, Article $article)
-    {   
+    {
         return view('articles.show', compact('article', 'category'));
     }
 

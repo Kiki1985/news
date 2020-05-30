@@ -1,9 +1,16 @@
 <footer>
     <aside class="subscription">
         <span><i>Get latest news delivered daily!</i></span>
+        @if (session('msg'))
+        <p class="subsMsg">{{ session('msg') }}</p>
+        @else
         <p class="subsMsg">We will send you breaking news right to your inbox</p>
+        @endif
+        <form method="POST" action="/subscribers">
+        @csrf
         <input class="btnSubm" type="submit" value="Subscribe">
         <input type="email" name="email" placeholder="Your E-mail" required>
+        </form>
     </aside>
 
     <aside class="categories">

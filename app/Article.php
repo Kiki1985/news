@@ -52,7 +52,7 @@ class Article extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'article_id')->latest();
+        return $this->hasMany(Comment::class, 'article_id');
     }
 
     public function addComment($body)

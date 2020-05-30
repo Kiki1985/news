@@ -1,3 +1,3 @@
 @if (session('message'))
-    <p>{{ session('message') }}
+    {{ session('message') }}
 @endif

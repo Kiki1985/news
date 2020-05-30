@@ -21,6 +21,10 @@ Route::post('/articles/{article}/comments', 'CommentsController@store');
 
 Route::delete('/comments/{comment}/delete', 'CommentsController@destroy');
 
+Route::delete('/responses/{response}/delete', 'ResponsesController@destroy');
+
+Route::post('/comments/{comment}/responses', 'ResponsesController@store');
+
 
 Route::get('/login', 'SessionsController@create');
 
@@ -38,5 +42,3 @@ Route::post('/subscribers', 'SubscribersController@store');
 
 
 Route::get('/{category:name}', 'CategoriesController@index');
-
-

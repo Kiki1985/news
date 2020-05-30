@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'author_id')->latest();
     }
+
+    public function responses()
+    {
+        return $this->hasMany(Response::class, 'author_id');
+    }
 }
