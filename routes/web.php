@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/home', 'ArticlesController@index');
+
 Route::get('/', 'ArticlesController@index');
 
 Route::get('/articles/create', 'ArticlesController@create');

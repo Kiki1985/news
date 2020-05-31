@@ -47,8 +47,6 @@ class CommentsController extends Controller
             session()->flash("message", 'Thanks for commenting!');
         }
 
-        
-        
         if (Request::ajax()) {
             return ($comment);
         } else {
