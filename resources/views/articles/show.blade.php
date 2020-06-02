@@ -87,7 +87,7 @@
           <div class="replayIcon fa fa-reply"></div>
           
          @endif
-          @can('update', $article)
+          @can('delete', $comment)
             
             <form style="float: right;" method="POST" action="/comments/{{$comment->id}}/delete">
             @method('DELETE')
@@ -132,7 +132,9 @@
               <div class="userImg">
                 <img src="/img/noUser.png" alt="&#9786" width="75">
               </div>
-            @can('update', $article) 
+
+            
+            @can('delete', $response) 
               {{--<div class="delete-comment fa fa-trash" data-id="{{$response->id}}"></div>--}}
               <form style="float: right;" method="POST" action="/responses/{{$response->id}}/delete">
               @method('DELETE')
@@ -142,6 +144,7 @@
                 </button>
               </form>
             @endcan
+
             <div>
               <i class="commentsI">By</i>
               <i class="commentsI">{{$response->user->fName}} {{$response->user->lName}}</i>

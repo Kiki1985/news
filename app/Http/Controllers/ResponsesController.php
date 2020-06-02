@@ -51,6 +51,7 @@ class ResponsesController extends Controller
 
     public function destroy(Response $response)
     {
+        $this->authorize('delete', $response);
         $response->delete();
         return back();
     }
