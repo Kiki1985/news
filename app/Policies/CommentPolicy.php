@@ -19,6 +19,6 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        return $comment->author_id == auth()->id();
+        return $comment->author_id == auth()->id() || $comment->article->author_id == auth()->id();
     }
 }

@@ -19,6 +19,6 @@ class ResponsePolicy
      */
     public function delete(User $user, Response $response)
     {
-        return $response->author_id == auth()->id();
+        return $response->author_id == auth()->id() || $response->comment->article->author_id == auth()->id();
     }
 }
