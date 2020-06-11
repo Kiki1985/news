@@ -8,6 +8,8 @@ use App\Article;
 
 use App\Comment;
 
+use App\Mail\CommentCreated;
+
 class CommentsController extends Controller
 {
     public function store(Article $article)
@@ -37,6 +39,10 @@ class CommentsController extends Controller
                 'article_id' => $article->id
                 ]);
                 session()->flash("message", 'Thanks for commenting!');
+
+                \Mail::to($article->user->email)->send(
+                    new CommentCreated($comment)
+                );
             }
         } else {
             $comment = Comment::create([
@@ -45,6 +51,10 @@ class CommentsController extends Controller
                 'article_id' => $article->id
             ]);
             session()->flash("message", 'Thanks for commenting!');
+
+            \Mail::to($article->user->email)->send(
+                new CommentCreated($comment)
+            );
         }
 
         if (Request::ajax()) {
