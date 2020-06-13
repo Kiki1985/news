@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Providers;
-
+use App\Events\CommentCreated;
+use App\Listeners\SendCommentCreatedNotification;
+use App\Events\ResponseCreated;
+use App\Listeners\SendResponseCreatedNotification;
 use App\Events\SubscriberRegistrated;
 use App\Listeners\SendSubscriberRegistratedNotification;
 use App\Events\ArticleCreated;
@@ -27,6 +30,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         SubscriberRegistrated::class => [
             SendSubscriberRegistratedNotification::class
+        ],
+        CommentCreated::class => [
+            SendCommentCreatedNotification::class
+        ],
+        ResponseCreated::class => [
+            SendResponseCreatedNotification::class
         ],
     ];
 

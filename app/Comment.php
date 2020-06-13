@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Mail\CommentCreated;
+//use App\Mail\CommentCreated;
 
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
 
 class Comment extends Model
 {
@@ -23,7 +23,7 @@ class Comment extends Model
         return $this->hasMany(Response::class);
     }
 
-    protected static function boot()
+    /*protected static function boot()
     {
         parent::boot();
         static::created(function ($comment){
@@ -31,5 +31,5 @@ class Comment extends Model
                 new CommentCreated($comment)
             );
         });
-    }
+    }*/
 }

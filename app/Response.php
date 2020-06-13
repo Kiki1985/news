@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Mail\ResponseCreated;
+//use App\Mail\ResponseCreated;
 
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
 
 class Response extends Model
 {
@@ -18,7 +18,7 @@ class Response extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    protected static function boot()
+    /*protected static function boot()
     {
         parent::boot();
         static::created(function ($response){
@@ -30,5 +30,5 @@ class Response extends Model
                 new ResponseCreated($response)
             );
         });
-    }
+    }*/
 }

@@ -8,6 +8,8 @@ use App\Comment;
 
 use App\Response;
 
+use App\Events\ResponseCreated;
+
 class ResponsesController extends Controller
 {
     public function store(Comment $comment)
@@ -33,6 +35,8 @@ class ResponsesController extends Controller
                 'author_id' => auth()->user()->id,
                 'comment_id' => $comment->id
                 ]);
+
+                event(new ResponseCreated($response));
             }
         } else {
             $response = Response::create([
@@ -40,6 +44,7 @@ class ResponsesController extends Controller
             'author_id' => auth()->user()->id,
             'comment_id' => $comment->id
             ]);
+            event(new ResponseCreated($response));
         }
 
         if (Request::ajax()) {
