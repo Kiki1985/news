@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\CommentCreated;
+
 class Comment extends Model
 {
     public function article()
@@ -18,4 +20,8 @@ class Comment extends Model
     {
         return $this->hasMany(Response::class);
     }
+
+    protected $dispatchesEvents = [
+        'created' => CommentCreated::class
+    ];
 }

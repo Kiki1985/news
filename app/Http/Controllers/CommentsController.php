@@ -39,7 +39,6 @@ class CommentsController extends Controller
                 'article_id' => $article->id
                 ]);
                 session()->flash("message", 'Thanks for commenting!');
-                event(new CommentCreated($comment));
             }
         } else {
             $comment = Comment::create([
@@ -48,7 +47,6 @@ class CommentsController extends Controller
                 'article_id' => $article->id
             ]);
             session()->flash("message", 'Thanks for commenting!');
-            event(new CommentCreated($comment));
         }
 
         if (Request::ajax()) {
