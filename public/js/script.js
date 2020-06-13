@@ -155,7 +155,7 @@ $(document).ready(function () {
 
     });
 
-    $('#myList .btnSubm').click(function (e) {
+    /*$('#myList .btnSubm').click(function (e) {
         e.preventDefault();
         commentId = $(this).attr('data-comment-id');
         userName = $(this).attr('data-user');
@@ -195,7 +195,7 @@ $(document).ready(function () {
                     deleteResponse();
                 }
             });
-    });
+    });*/
 
     /*$(".resp").slice(0, 3).show();
     $('#loadMore').click(function (e) {

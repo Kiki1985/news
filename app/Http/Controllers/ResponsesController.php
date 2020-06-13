@@ -8,6 +8,8 @@ use App\Comment;
 
 use App\Response;
 
+use App\Mail\ResponseCreated;
+
 class ResponsesController extends Controller
 {
     public function store(Comment $comment)
@@ -33,6 +35,14 @@ class ResponsesController extends Controller
                 'author_id' => auth()->user()->id,
                 'comment_id' => $comment->id
                 ]);
+
+                \Mail::to($comment->user->email)->send(
+                    new ResponseCreated($response)
+                );
+
+                \Mail::to($comment->article->user->email)->send(
+                    new ResponseCreated($response)
+                );
             }
         } else {
             $response = Response::create([
@@ -40,6 +50,14 @@ class ResponsesController extends Controller
             'author_id' => auth()->user()->id,
             'comment_id' => $comment->id
             ]);
+
+            \Mail::to($comment->user->email)->send(
+                new ResponseCreated($response)
+            );
+
+            \Mail::to($comment->article->user->email)->send(
+                new ResponseCreated($response)
+            );
         }
 
         if (Request::ajax()) {

@@ -6,7 +6,7 @@ By: {{$comment->user->fName}} {{$comment->user->lName}}
 {{$comment->article->categories[0]->name}}
 
 @component('mail::button', ['url' => url('/'. $comment->article->categories[0]->name . '/' . $comment->article->title . '#r' )])
-Show Comment
+View Comment
 @endcomponent
 
 Thanks,<br>
