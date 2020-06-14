@@ -8,8 +8,6 @@ use App\Article;
 
 use App\Comment;
 
-use App\Events\CommentCreated;
-
 class CommentsController extends Controller
 {
     public function store(Article $article)

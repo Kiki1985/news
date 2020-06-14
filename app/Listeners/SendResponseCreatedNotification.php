@@ -2,11 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Mail\ResponseCreated as ResponseCreatedMail;
+use App\Jobs\SendResponseCreatedJob;
 
 use App\Events\ResponseCreated;
-
-use Illuminate\Support\Facades\Mail;
 
 class SendResponseCreatedNotification
 {
@@ -28,12 +26,6 @@ class SendResponseCreatedNotification
      */
     public function handle(ResponseCreated $event)
     {
-        Mail::to($event->response->comment->user->email)->send(
-            new ResponseCreatedMail($event->response)
-        );
-
-        Mail::to($event->response->comment->article->user->email)->send(
-            new ResponseCreatedMail($event->response)
-        );
+        SendResponseCreatedJob::dispatch($event->response);
     }
 }

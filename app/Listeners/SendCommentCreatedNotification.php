@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Mail\CommentCreated as CommentCreatedMail;
+use App\Jobs\SendCommentCreatedJob;
 
 use App\Events\CommentCreated;
 
-use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class SendCommentCreatedNotification
 {
@@ -28,8 +28,7 @@ class SendCommentCreatedNotification
      */
     public function handle(CommentCreated $event)
     {
-        Mail::to($event->comment->article->user->email)->send(
-            new CommentCreatedMail($event->comment)
-        );
+        SendCommentCreatedJob::dispatch($event->comment)
+            ->delay(Carbon::now()->addSeconds(10));
     }
 }
