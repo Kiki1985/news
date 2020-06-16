@@ -57,6 +57,11 @@
     @endforeach
 @endforeach
 
+
+  @if (request()->is('/'))
+    {{$articles->links()}}    
+  @endif
+
 </div> <!-- end div main -->
 
    

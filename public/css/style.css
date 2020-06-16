@@ -182,12 +182,44 @@ a{
     border-top: 1px solid #efefef;
 }
 
-aside{
+.page-item {
+    display: inline-block;
+    height: 50px;
+    min-width: 50px;
+    font-size: 14px;
+    line-height: 49px;
+}
+
+.active{
+    color: #fff602;
+    background-color: #000;
+}
+
+.page-link{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto serif', serif;
+    font-style: italic;
+    transition: 0.2s ease-in;
+}
+
+.page-link:hover{
+    background-color: black;
+    color: #fff602;
+}
+
+aside {
     float: right;
     width: 27%;
     min-width: 271px;
     padding: 2%;
     padding-bottom: 2.7%;
+}
+
+.noPadding:last-of-type{
+    clear: both;    
 }
 
 .noPadding{

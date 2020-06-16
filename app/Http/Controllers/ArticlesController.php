@@ -21,7 +21,7 @@ class ArticlesController extends Controller
 
         $articles = Article::latest()
             ->filter(request(['month', 'year']))
-            ->get();
+            ->paginate(10);
 
         return view('index', compact('articles', 'category'));
     }
