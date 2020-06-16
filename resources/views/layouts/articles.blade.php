@@ -32,7 +32,11 @@
           @if(count($article->comments))
           <li>
             <i class="fa fa-comments-o"></i>
-            <i class="commentsI comm">comments {{$article->comments->count()}}</i>
+            <?php $resp = 0; ?>
+            @foreach($article->comments as $comment)
+            <?php $resp += $comment->response->count(); ?>
+            @endforeach
+            <i class="commentsI comm">comments {{$article->comments->count()+$resp}}</i>
           </li>
          @endif
 
