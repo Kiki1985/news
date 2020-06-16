@@ -16,7 +16,7 @@
     </div> <!-- end of div id=bigRight --> 
     <div id="bigLeft">
     @foreach($categories->slice(0, 4) as $categ)
-    @foreach($categ->articles->slice(0, 1) as $art)
+    @foreach($categ->articles->slice(1, 1) as $art)
         <div data-title="{{ucwords($art->title)}}" class="smallLeft">
             <div class="imgCateg">
                 <a href="/{{$categ->name}}"><i>{{ucfirst($categ->name)}}</i></a>
