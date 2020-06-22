@@ -12,18 +12,36 @@ use App\Category;
 
 class ArticlesController extends Controller
 {
-    public function index(Article $article)
+    public function index(Article $article, Request $request)
     {
-        $categories = ['sport', 'politic', 'economy', 'world'];
-        $article->addCategory($categories);
-    
-        $category = (object)array("name"=>"news");
+        if($request->ajax())
+        {
+            //$category = (object)array("name"=>"news");
+            $articles = Article::latest()->paginate(1);
+            return view('layouts.articlesPagination', compact('articles'))->render();
+        }else{
 
-        $articles = Article::latest()
-            ->filter(request(['month', 'year']))
-            ->paginate(10);
+            $categories = ['sport', 'politic', 'economy', 'world'];
+            $article->addCategory($categories);
+        
+            $category = (object)array("name"=>"news");
 
-        return view('index', compact('articles', 'category'));
+            $articles = Article::latest()
+                ->filter(request(['month', 'year']))
+                ->paginate(1);
+
+            return view('index', compact('articles', 'category'));
+        }
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            //$category = (object)array("name"=>"news");
+            $articles = Article::latest()->paginate(1);
+            return view('articlesPagination', compact('articles'))->render();
+        }
     }
 
     public function create()

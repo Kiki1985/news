@@ -19,6 +19,12 @@ Route::delete('/{category:name}/{article:title}', 'ArticlesController@destroy');
 Route::post('/articles', 'ArticlesController@store');
 
 
+
+//Route::get('fetch_data', 'ArticlesController@fetch_data');
+
+
+
+
 Route::post('/articles/{article}/comments', 'CommentsController@store');
 
 Route::delete('/comments/{comment}/delete', 'CommentsController@destroy');

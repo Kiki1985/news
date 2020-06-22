@@ -396,7 +396,28 @@ $(document).ready(function () {
     }
 
     replay();
+    
+    $(document).on('click', '.pagination a', function (e) {
 
+        e.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+
+        
+
+        fetchData(page);
+    });
+    
+    function fetchData(page){
+        $.ajax({
+            type:'GET',
+            url: "/?page="+page,
+            success:function(data)
+            {
+                $('.main').html(data);  
+                //console.log(data)
+            }
+        })
+    }
 
     
 });
