@@ -13,7 +13,7 @@ $(document).ready(function () {
             type: 'post',
             data: {email:email},
             beforeSend:function(){
-                $('.subsMsg').html('<img src="/img/loading3.gif" width="70px">');
+                $('.subsMsg').html('<img src="/img/loading.gif" width="70px">');
             },
             success: function (data) {
                 $('.subsMsg').text(data);
