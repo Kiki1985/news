@@ -18,6 +18,7 @@ class SubscribersController extends Controller
     public function store(Request $request)
     {
         $email = $request->input('email');
+        sleep(3);
       
         if ($email == null) {
             $msg = 'Please insert Your E-mail.';

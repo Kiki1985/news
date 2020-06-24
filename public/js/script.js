@@ -12,9 +12,13 @@ $(document).ready(function () {
             url: '/subscribers',
             type: 'post',
             data: {email:email},
+            beforeSend:function(){
+                $('.subsMsg').html('<img src="/img/loading3.gif" width="70px">');
+            },
             success: function (data) {
                 $('.subsMsg').text(data);
                 $('input[name ="email"]').val('');
+                $('.loader').hide();
             }
         });
     });
@@ -413,8 +417,7 @@ $(document).ready(function () {
             url: "/?page="+page,
             success:function(data)
             {
-                $('.main').html(data);  
-                //console.log(data)
+                $('.main').html(data); 
             }
         })
     }

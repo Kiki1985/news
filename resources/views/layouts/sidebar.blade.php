@@ -22,6 +22,7 @@
 
     @if (session('msg'))
         <p class="subsMsg">{{ session('msg') }}</p>
+
     @else
     <p class="subsMsg">We will send you breaking news right to your inbox</p>
     @endif
