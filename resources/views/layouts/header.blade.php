@@ -7,6 +7,12 @@
     <div id="login">
       @if(Auth::check())
       <ul>
+        @if(auth()->user()->image)
+        <li><img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40"></li>
+        @else
+        <li><img src="{{asset('/storage/images/noUser.png')}}" width="40" height="40"></li>
+        @endif
+
         <li><i><a href="#">{{auth()->user()->fName}}</a></i></li>
         <li><i><a href="/logout">Logout</a></i></li>
         <li><i><a href="/articles/create">New article</a></i></li>
