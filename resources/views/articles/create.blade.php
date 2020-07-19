@@ -6,7 +6,7 @@
 <div class="main"><hr>
 <div class="show">
 
-<form method="POST" action="/articles">
+<form method="POST" action="/articles" enctype="multipart/form-data">
 @csrf
 <div class="custom-select" style="width:200px;">
 <select name="category">
@@ -17,6 +17,8 @@
 </div>
 <input class="regist" type="text"  name="title" placeholder="Title" required value="{{old('title')}}"><br><br>
 <textarea class="textarea" name="body" placeholder="Text of an article" required >{{old('body')}}</textarea><br><br>
+<label for="image">Article image</label><br><br>
+<input type="file" name="image"><br><br>
 <button class="btnSubm" type="submit">Create</button>
 </form><br>
 @include('layouts.errors')

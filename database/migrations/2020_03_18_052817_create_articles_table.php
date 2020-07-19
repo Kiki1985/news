@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
                 $table->unsignedBigInteger('author_id');
                 $table->text('title');
                 $table->text('body');
+                $table->string('image');
                 $table->timestamps();
 
             

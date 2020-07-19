@@ -52,7 +52,8 @@ class User extends Authenticatable
     {
         $this->articles()->create([
             'title' => Str::slug($article->title),
-            'body' => $article->body
+            'body' => $article->body,
+            'image' => $article->image->getClientOriginalName()
         ])->categories()->attach($article->category);
     }
 

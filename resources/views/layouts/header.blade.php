@@ -6,17 +6,29 @@
 
     <div id="login">
       @if(Auth::check())
-      <ul>
-        @if(auth()->user()->image)
+      <!--<ul>-->
+        {{--@if(auth()->user()->image)
         <li><img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40"></li>
         @else
         <li><img src="{{asset('/storage/images/noUser.png')}}" width="40" height="40"></li>
-        @endif
+        @endif--}}
 
-        <li><i><a href="#">{{auth()->user()->fName}}</a></i></li>
-        <li><i><a href="/logout">Logout</a></i></li>
-        <li><i><a href="/articles/create">New article</a></i></li>
-      </ul>
+        <div class="dropdown">
+          <!--<li>-->
+            <i>
+              <a href="#" class="dropbtn">{{auth()->user()->fName}} <img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40">
+              </a>
+            </i>
+          <!--</li>-->
+
+          <div class="dropdown-content">
+            <i><a href="/logout">Logout</a></i>
+            <i><a href="/articles/create">New article</a></i>
+          </div>
+        </div>
+
+        
+      <!--</ul>-->
       @else
       <ul>
         <li><i><a href="/login">Login</a></i></li>
@@ -26,9 +38,10 @@
     </div>
   </nav> <!-- end nav id=top -->
 
-  <span id="logo"><a href="/"><i>News</i><b>Test</b></a></span>
+  <div style="width: 100%; overflow: auto; border-top: 1px solid #CBCBCB"><span id="logo"><a href="/"><i>News</i><b>Test</b></a></span></div>
     
   <nav id="down">
+  
   <div id="divNav" style="overflow: auto;
               margin: 0 auto;
               max-width: 1790px;

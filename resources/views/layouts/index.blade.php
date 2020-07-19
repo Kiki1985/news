@@ -1,6 +1,9 @@
 <div id="index">
     <div id="bigRight">
-        <img src="/img/news.jpg" alt="&#9786" width="100%">
+    @foreach($articles->slice(0, 1) as $article)
+        <img src="{{asset('/storage/images/'.$article->image)}}" alt="&#9786" width="100%">
+    @endforeach
+        <!--<img src="/img/news.jpg" alt="&#9786" width="100%">-->
         <div class="imgCateg">
             <a href="/"><i>{{ucfirst($category->name)}}</i></a>
         </div>
@@ -21,7 +24,7 @@
             <div class="imgCateg">
                 <a href="/{{$categ->name}}"><i>{{ucfirst($categ->name)}}</i></a>
             </div>
-            <img src="/img/news.jpg" alt="&#9786" width="100%">
+            <img src="{{asset('/storage/images/'.$art->image)}}" alt="&#9786" width="100%">
             
                 <a href="/{{$categ->name}}/{{$art->title}}">
                     <div id="smallTitle">

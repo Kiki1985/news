@@ -47,7 +47,7 @@
         @foreach($article->categories as $category)
         <article data-title="{{ucfirst($article->title)}}">
             <div>
-                <img src="/img/news.jpg" alt="&#9786" width="40%">
+                <img src="{{asset('/storage/images/'.$article->image)}}" alt="&#9786" width="40%">
             </div>
 
             <div>
@@ -83,7 +83,7 @@
         <div class="imgCateg">
             <a href="/{{$categ->name}}"><i>{{ucfirst($categ->name)}}</i></a>
         </div>
-            <img src="/img/news.jpg" width="100%">
+            <img src="{{asset('/storage/images/'.$topCom->image)}}" width="100%">
             <a href="/{{$categ->name}}/{{$topCom->title}}">
               <div id="smallTitle">
                 <h2>

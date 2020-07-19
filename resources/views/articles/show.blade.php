@@ -40,7 +40,7 @@
       @endcan
     </ul> 
     <div id="showImg">
-      <img src="/img/news.jpg" alt="&#9786" width="100%">
+      <img src="{{asset('/storage/images/'.$article->image)}}" alt="&#9786" width="100%">
     </div>
     <div>
       <p>{{$article->body}}</p>

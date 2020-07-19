@@ -5,7 +5,7 @@
     <div class="article">
         <div class="divImg">
 
-            <img src='/img/news.jpg' alt="&#9786" width="160"  height="120">
+            <img src='{{asset('/storage/images/'.$article->image)}}' width="160"  height="120">
             <a href="/{{$category->name}}"><div class="imgCateg"><i>{{ucfirst($category->name)}}</i></div></a>
         </div>
 

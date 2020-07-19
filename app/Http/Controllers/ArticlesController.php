@@ -17,7 +17,7 @@ class ArticlesController extends Controller
         if($request->ajax())
         {
             //$category = (object)array("name"=>"news");
-            $articles = Article::latest()->paginate(1);
+            $articles = Article::latest()->paginate(5);
             return view('layouts.articlesPagination', compact('articles'))->render();
         }else{
 
@@ -28,7 +28,7 @@ class ArticlesController extends Controller
 
             $articles = Article::latest()
                 ->filter(request(['month', 'year']))
-                ->paginate(1);
+                ->paginate(5);
 
             return view('index', compact('articles', 'category'));
         }
@@ -39,8 +39,8 @@ class ArticlesController extends Controller
         if($request->ajax())
         {
             //$category = (object)array("name"=>"news");
-            $articles = Article::latest()->paginate(1);
-            return view('articlesPagination', compact('articles'))->render();
+            $articles = Article::latest()->paginate(5);
+            return view('layouts.articlesPagination', compact('articles'))->render();
         }
     }
 
@@ -61,6 +61,10 @@ class ArticlesController extends Controller
         if (Article::where('title', $title)->exists()) {
             return back()->with('message', 'This title already exists.');
         } else {
+            if($request->hasFile('image')){
+                $filename = request()->image->getClientOriginalName();
+                request()->image->storeAs('images', $filename, 'public');
+            }
             auth()->user()->publish(
                 new Article($this->validateArticle())
             );
@@ -106,7 +110,8 @@ class ArticlesController extends Controller
         return request()->validate([
             'title' => 'required|min:3|max:255',
             'body' => 'required|min:3|max:2555',
-            'category' => 'required'
+            'category' => 'required',
+            'image' => 'required|file|image|max:5000'
             ]);
     }
 }
