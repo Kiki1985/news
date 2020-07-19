@@ -46,7 +46,8 @@ class Article extends Model
     {
         Article::update([
             'title' => Str::slug($article->title),
-            'body' => $article->body
+            'body' => $article->body,
+            'image' => $article->image->getClientOriginalName()
         ]);
     }
 
