@@ -21,6 +21,8 @@ class ResponsesController extends Controller
 
         $authorId = auth()->user()->id;
 
+        $image = auth()->user()->image;
+
         $commentId = $comment->id;
 
         $response = Response::where('comment_id', $commentId)->latest()->first();
@@ -45,7 +47,7 @@ class ResponsesController extends Controller
         }
 
         if (Request::ajax()) {
-            return ($response);
+            return ([$response, $image]);
         } else {
             return back();
         }

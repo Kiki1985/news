@@ -22,6 +22,8 @@ class CommentsController extends Controller
 
         $authorId = auth()->user()->id;
 
+        $image = auth()->user()->image;
+
         $articleId = $article->id;
 
         $comment = Comment::where('article_id', $articleId)->latest()->first();
@@ -48,7 +50,7 @@ class CommentsController extends Controller
         }
 
         if (Request::ajax()) {
-            return ($comment);
+            return ([$comment, $image]);
         } else {
             return back();
         }

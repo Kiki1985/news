@@ -100,7 +100,6 @@ $(document).ready(function () {
             type: 'post',
             data: {body:body,article_id:articleId},
             success: function (data) {
-                //console.log(data);
                 if (typeof data == "string") {
                     $('textarea').val("");
                     $('textarea').attr('placeholder', data);
@@ -118,11 +117,11 @@ $(document).ready(function () {
                 }
 
 
-                $('#recentComm ul').prepend('<li data-id="'+data.id+'"><p><i class="commentsI">By </i><i class="commentsI">'+fName+'</i><i class="fa fa-clock-o"></i> <i class="createdAt commentsI">now</i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
+                $('#recentComm ul').prepend('<li data-id="'+data[0].id+'"><p><i class="commentsI">By </i><i class="commentsI">'+fName+'</i><i class="fa fa-clock-o"></i> <i class="createdAt commentsI">now</i></p><a href=""><h5 id="h5">'+body.substr(0, 60)+'</h5></a><hr class="hr2"></li>');
 
 
 
-                $('.list-group').append("<li class='resp'><div class='userImg'><img src='/img/noUser.png' alt='&#9786' width='75'></div><form style='float: right' method='POST' action='/comments/"+data.id+"/delete'><input type='hidden' name='_method' value='DELETE'><input type='hidden' name='_token' value='"+ $('meta[name="csrf-token"]').attr('content')+"'><button><div class='delete-comment fa fa-trash' data-id='"+data.id+"'></div></button></form><p><i class='commentsI'>By </i><i class='commentsI'>"+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
+                $('.list-group').append("<li class='resp'><div class='userImg'><img src='/storage/images/"+data[1]+"' alt='&#9786' width='75'></div><form style='float: right' method='POST' action='/comments/"+data[0].id+"/delete'><input type='hidden' name='_method' value='DELETE'><input type='hidden' name='_token' value='"+ $('meta[name="csrf-token"]').attr('content')+"'><button><div class='delete-comment fa fa-trash' data-id='"+data[0].id+"'></div></button></form><p><i class='commentsI'>By </i><i class='commentsI'>"+fName+"</i><i class='fa fa-clock-o'></i> <i class='createdAt commentsI'>now</i></p><p>"+body+"</p><hr class='hr2'></li>");
 
                 $('.textarea').val('');
                 $('.textarea').attr('placeholder','Thanks for commenting!');
@@ -169,10 +168,11 @@ $(document).ready(function () {
                 type: 'post',
                 data: {body:body,comment_id:commentId},
                 success: function (data) {
+                    //console.log(data);
                     button = $('.resp').find("[data-comment-id='" + commentId + "']");
                     //button.parent().parent().parent().parent().find('.replayInput').slideToggle('fast');
                     
-                    button.parent().parent().parent().next().append('<div class="commentResp"><div class="userImg"><img src="/img/noUser.png" alt="&#9786" width="75"></div><form style="float: right;" method="POST" action="/responses/'+data.id+'/delete"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="'+ $('meta[name="csrf-token"]').attr('content')+'"><button><div class="delete-response fa fa-trash" data-id="'+data.id+'"></div></button></form><div><i class="commentsI">By </i><i class="commentsI">'+userName+'</i><i class="fa fa-clock-o"></i><i class="respCreatedAt commentsI"></i></div><p>'+data.body+'</p></div>');
+                    button.parent().parent().parent().next().append('<div class="commentResp"><div class="userImg"><img src="/storage/images/'+data[1]+'" alt="&#9786" width="75"></div><form style="float: right;" method="POST" action="/responses/'+data[0].id+'/delete"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="'+ $('meta[name="csrf-token"]').attr('content')+'"><button><div class="delete-response fa fa-trash" data-id="'+data[0].id+'"></div></button></form><div><i class="commentsI">By </i><i class="commentsI">'+userName+'</i><i class="fa fa-clock-o"></i><i class="respCreatedAt commentsI"></i></div><p>'+data[0].body+'</p></div>');
                     button.parent().parent().parent().parent().find('.replayIcon').css("display", "none");
                     button.parent().parent().parent().parent().find('.replayInput').css("display", "none");
 

@@ -60,4 +60,6 @@ class RegistrationController extends Controller
             return redirect(session('link'));
         }
     }
+
+
 }

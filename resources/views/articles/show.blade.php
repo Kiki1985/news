@@ -80,7 +80,7 @@
       @foreach($article->comments as $comment)
         <li class="resp">
           <div class="userImg">
-            <img src='/img/noUser.png' alt="&#9786" width="75" >
+            <img src='{{asset('/storage/images/'.$comment->user->image)}}' alt="&#9786" width="75" >
           </div>
          @if(auth()->user() && auth()->user()->id !== $comment->user->id)
          
@@ -109,7 +109,7 @@
 
          <div class="replayInput">
             <div class="userImg">
-              <img src="/img/noUser.png" alt="&#9786" width="52">
+              <img src="{{asset('/storage/images/'.$comment->user->image)}}" alt="&#9786" width="52">
             </div>
             <div class="insertResp">
 
@@ -130,7 +130,7 @@
           @foreach($comment->response as $response)
             <div class="commentResp" >
               <div class="userImg">
-                <img src="/img/noUser.png" alt="&#9786" width="75">
+                <img src="{{asset('/storage/images/'.$response->user->image)}}" alt="&#9786" width="75">
               </div>
 
             

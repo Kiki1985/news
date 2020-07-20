@@ -6,20 +6,17 @@
 
     <div id="login">
       @if(Auth::check())
-      <!--<ul>-->
-        {{--@if(auth()->user()->image)
-        <li><img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40"></li>
-        @else
-        <li><img src="{{asset('/storage/images/noUser.png')}}" width="40" height="40"></li>
-        @endif--}}
 
         <div class="dropdown">
-          <!--<li>-->
             <i>
-              <a href="#" class="dropbtn">{{auth()->user()->fName}} <img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40">
+              <a href="#" class="dropbtn">{{auth()->user()->fName}}
+              @if(auth()->user()->image)
+               <img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40">
+              @else
+                <img src="{{asset('/storage/images/noUser.png')}}" width="40" height="40">
+              @endif 
               </a>
             </i>
-          <!--</li>-->
 
           <div class="dropdown-content">
             <i><a href="/logout">Logout</a></i>
@@ -27,8 +24,6 @@
           </div>
         </div>
 
-        
-      <!--</ul>-->
       @else
       <ul>
         <li><i><a href="/login">Login</a></i></li>
