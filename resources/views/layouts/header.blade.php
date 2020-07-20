@@ -10,11 +10,7 @@
         <div class="dropdown">
             <i>
               <a href="#" class="dropbtn">{{auth()->user()->fName}}
-              @if(auth()->user()->image)
                <img src="{{asset('/storage/images/'.auth()->user()->image)}}" width="40" height="40">
-              @else
-                <img src="{{asset('/storage/images/noUser.png')}}" width="40" height="40">
-              @endif 
               </a>
             </i>
 

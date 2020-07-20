@@ -109,7 +109,7 @@
 
          <div class="replayInput">
             <div class="userImg">
-              <img src="{{asset('/storage/images/'.$comment->user->image)}}" alt="&#9786" width="52">
+              <img src="{{asset('/storage/images/'.auth()->user()->image)}}" alt="&#9786" width="52">
             </div>
             <div class="insertResp">
 

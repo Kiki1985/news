@@ -38,6 +38,7 @@ class RegistrationController extends Controller
                 'fName' => request('firstName'),
                 'lName' => request('lastName'),
                 'email' => request('email'),
+                'image' =>'noUser.png',
                 'password' => bcrypt(request('password'))
             ]);
 
