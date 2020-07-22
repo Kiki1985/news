@@ -64,6 +64,7 @@ class RegistrationController extends Controller
 
     public function edit(User $user)
     {
+        abort_unless(auth()->user(), 403);
         abort_unless(auth()->user()->id == $user->id, 403);
         return view('registration.edit', compact('user'));
     }
