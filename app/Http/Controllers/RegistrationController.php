@@ -79,9 +79,10 @@ class RegistrationController extends Controller
                 ]);
         $user->update([
                 'fName' => request('fName'),
-                'lName' => request('fName'),
+                'lName' => request('lName'),
                 'password' => bcrypt(request('password')),
-                'email' => request('email')
+                'email' => request('email'),
+                'image' => 'noUser.png',
             ]);
 
         if(request()->hasFile('image')){
