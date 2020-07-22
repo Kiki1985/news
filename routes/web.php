@@ -19,12 +19,6 @@ Route::delete('/{category:name}/{article:title}', 'ArticlesController@destroy');
 Route::post('/articles', 'ArticlesController@store');
 
 
-
-//Route::get('fetch_data', 'ArticlesController@fetch_data');
-
-
-
-
 Route::post('/articles/{article}/comments', 'CommentsController@store');
 
 Route::delete('/comments/{comment}/delete', 'CommentsController@destroy');
@@ -44,6 +38,12 @@ Route::get('/logout', 'SessionsController@destroy');
 Route::get('/register', 'RegistrationController@create');
 
 Route::post('/register', 'RegistrationController@store');
+
+Route::get('/users/{user}/editUser', 'RegistrationController@edit');
+
+Route::patch('/users/{user}', 'RegistrationController@update');
+
+Route::delete('/users/{user}/deleteUser', 'RegistrationController@destroy');
 
 
 Route::post('/subscribers', 'SubscribersController@store');

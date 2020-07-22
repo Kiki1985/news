@@ -16,6 +16,7 @@
 
           <div class="dropdown-content">
             <i><a href="/logout">Logout</a></i>
+            <i><a href="/users/{{auth()->user()->id}}/editUser">Edit profile</a></i>
             <i><a href="/articles/create">New article</a></i>
           </div>
         </div>

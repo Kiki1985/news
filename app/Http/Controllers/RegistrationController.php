@@ -10,7 +10,7 @@ class RegistrationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest', ['except' =>'destroy']);
+        $this->middleware('guest', ['except' => ['edit', 'update', 'destroy']]);
     }
     
     public function create()
@@ -28,15 +28,15 @@ class RegistrationController extends Controller
         } else {
 
             request()->validate([
-                'firstName' => 'required|min:3|max:25',
-                'lastName' => 'required|min:3|max:25',
+                'fName' => 'required|min:3|max:25',
+                'lName' => 'required|min:3|max:25',
                 'email' => 'required|email|min:3|max:25',
                 'password' => 'required|confirmed|min:3|max:25'
                 ]);
                     
             $user = User::create([
-                'fName' => request('firstName'),
-                'lName' => request('lastName'),
+                'fName' => request('fName'),
+                'lName' => request('lName'),
                 'email' => request('email'),
                 'image' =>'noUser.png',
                 'password' => bcrypt(request('password'))
@@ -45,7 +45,7 @@ class RegistrationController extends Controller
             if($request->hasFile('image')){
                 request()->validate([
                     'image' => 'file|image|max:5000'
-                ]);
+            ]);
                     
             $filename = request()->image->getClientOriginalName();
             request()->image->storeAs('images', $filename, 'public');
@@ -62,5 +62,47 @@ class RegistrationController extends Controller
         }
     }
 
+    public function edit(User $user)
+    {
+        abort_unless(auth()->user()->id == $user->id, 403);
+        return view('registration.edit', compact('user'));
+    }
 
+    public function update(User $user)
+    {
+        abort_unless(auth()->user()->id == $user->id, 403);
+        request()->validate([
+                'fName' => 'required|min:3|max:25',
+                'lName' => 'required|min:3|max:25',
+                'email' => 'required|email|min:3|max:25',
+                'password' => 'required|confirmed|min:3|max:25'
+                ]);
+        $user->update([
+                'fName' => request('fName'),
+                'lName' => request('fName'),
+                'password' => bcrypt(request('password')),
+                'email' => request('email')
+            ]);
+
+        if(request()->hasFile('image')){
+            request()->validate([
+            'image' => 'file|image|max:5000'
+            ]);
+                    
+            $filename = request()->image->getClientOriginalName();
+            request()->image->storeAs('images', $filename, 'public');
+            $user->update([
+                'image' => $filename
+            ]);
+        }
+
+        return redirect("/");
+    }
+
+    public function destroy(User $user)
+    {
+        abort_unless(auth()->user()->id == $user->id, 403);
+        $user->delete();
+        return redirect('/');
+    }
 }

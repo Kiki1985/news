@@ -34,16 +34,6 @@ class ArticlesController extends Controller
         }
     }
 
-    function fetch_data(Request $request)
-    {
-        if($request->ajax())
-        {
-            //$category = (object)array("name"=>"news");
-            $articles = Article::latest()->paginate(5);
-            return view('layouts.articlesPagination', compact('articles'))->render();
-        }
-    }
-
     public function create()
     {
         abort_unless(auth()->user(), 403);
