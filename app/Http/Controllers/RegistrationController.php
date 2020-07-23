@@ -28,8 +28,6 @@ class RegistrationController extends Controller
         if (User::where('email', $email)->exists()) {
             return redirect()->back()->with('message', 'The email address is already registrated.');
         } else {
-
-
             request()->validate([
                 'fName' => 'required|min:3|max:25',
                 'lName' => 'required|min:3|max:25',
@@ -48,13 +46,13 @@ class RegistrationController extends Controller
             if($request->hasFile('image')){
                 request()->validate([
                     'image' => 'file|image|max:5000'
-            ]);
+                ]);
                     
-            $filename = request()->image->getClientOriginalName();
-            request()->image->storeAs('images', $filename, 'public');
-            $user->update([
-                'image' => $filename
-            ]);
+                $filename = request()->image->getClientOriginalName();
+                request()->image->storeAs('images', $filename, 'public');
+                $user->update([
+                    'image' => $filename
+                ]);
             } 
             
             auth()->login($user);
@@ -75,9 +73,6 @@ class RegistrationController extends Controller
     public function update(User $user)
     {
         abort_unless(auth()->user()->id == $user->id, 403);
-        if(auth()->user()->image != 'noUser.png') {
-            Storage::disk('public')->delete('/images/'.auth()->user()->image);
-        }
         request()->validate([
                 'fName' => 'required|min:3|max:25',
                 'lName' => 'required|min:3|max:25',
@@ -91,33 +86,22 @@ class RegistrationController extends Controller
                 'email' => request('email'),
                 'image' => 'noUser.png',
             ]);
-
-        if(request()->hasFile('image')){
+        User::deleteOldUsersImage();
+        if(request()->hasFile('image')) {
             request()->validate([
             'image' => 'file|image|max:5000'
             ]);
-                    
-            $filename = request()->image->getClientOriginalName();
-            request()->image->storeAs('images', $filename, 'public');
-            $user->update([
-                'image' => $filename
-            ]);
+            User::updateProfileImage(request()->image);
         }
-
         return redirect("/");
     }
 
     public function destroy(User $user)
     {
         abort_unless(auth()->user()->id == $user->id, 403);
-        if(auth()->user()->image != 'noUser.png') {
-            Storage::disk('public')->delete('/images/'.auth()->user()->image);
-        }
-        foreach ($user->articles as $article) {
-            Storage::disk('public')->delete('/images/'.$article->image);
-        }
+        User::deleteOldUsersImage();
+        User::deleteOldUsersArticlesImage();
         $user->delete();
-
         return redirect('/');
     }
 }

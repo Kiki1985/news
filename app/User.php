@@ -4,6 +4,8 @@ namespace App;
 
 use App\Category;
 
+use Illuminate\Support\Facades\Storage;
+
 use Auth;
 
 use Illuminate\Support\Str;
@@ -65,5 +67,26 @@ class User extends Authenticatable
     public function responses()
     {
         return $this->hasMany(Response::class, 'author_id');
+    }
+
+    public static function updateProfileImage($image)
+    {
+        $filename = $image->getClientOriginalName();
+        $image->storeAs('images', $filename, 'public');
+        auth()->user()->update(['image' => $filename]);
+    }
+
+    protected function deleteOldUsersImage()
+    {
+        if(auth()->user()->image != 'noUser.png') {
+            Storage::disk('public')->delete('/images/'.auth()->user()->image);
+        }
+    }
+
+    protected function deleteOldUsersArticlesImage()
+    {
+        foreach (auth()->user()->articles as $article) {
+            Storage::disk('public')->delete('/images/'.$article->image);
+        }
     }
 }
