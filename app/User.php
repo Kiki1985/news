@@ -6,6 +6,8 @@ use App\Category;
 
 use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\Facades\Image;
+
 use Auth;
 
 use Illuminate\Support\Str;
@@ -55,6 +57,8 @@ class User extends Authenticatable
         
         $filename = $article->image->getClientOriginalName();
         $article->image->storeAs('images', $filename, 'public');
+        $image = Image::make(public_path('storage/images/'.$filename))->fit(600, 400);
+        $image->save();
             
         $this->articles()->create([
             'title' => Str::slug($article->title),

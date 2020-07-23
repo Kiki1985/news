@@ -29,11 +29,8 @@ class RegistrationController extends Controller
             return redirect()->back()->with('message', 'The email address is already registrated.');
         } else {
             $user = User::addUser($this->validateArticle());
-            
             auth()->login($user);
-            
             session()->flash("message", "Thanks for Signing up");
-
             return redirect(session('link'));
         }
     }
