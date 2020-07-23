@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Http\Request;
 
 use App\User;
@@ -26,6 +28,7 @@ class RegistrationController extends Controller
         if (User::where('email', $email)->exists()) {
             return redirect()->back()->with('message', 'The email address is already registrated.');
         } else {
+
 
             request()->validate([
                 'fName' => 'required|min:3|max:25',
@@ -72,6 +75,9 @@ class RegistrationController extends Controller
     public function update(User $user)
     {
         abort_unless(auth()->user()->id == $user->id, 403);
+        if(auth()->user()->image != 'noUser.png') {
+            Storage::disk('public')->delete('/images/'.auth()->user()->image);
+        }
         request()->validate([
                 'fName' => 'required|min:3|max:25',
                 'lName' => 'required|min:3|max:25',
@@ -104,7 +110,14 @@ class RegistrationController extends Controller
     public function destroy(User $user)
     {
         abort_unless(auth()->user()->id == $user->id, 403);
+        if(auth()->user()->image != 'noUser.png') {
+            Storage::disk('public')->delete('/images/'.auth()->user()->image);
+        }
+        foreach ($user->articles as $article) {
+            Storage::disk('public')->delete('/images/'.$article->image);
+        }
         $user->delete();
+
         return redirect('/');
     }
 }

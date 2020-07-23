@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
@@ -51,7 +53,7 @@ class ArticlesController extends Controller
         if (Article::where('title', $title)->exists()) {
             return back()->with('message', 'This title already exists.');
         } else {
-            if($request->hasFile('image')){
+            if($request->hasFile('image')) {
                 $filename = request()->image->getClientOriginalName();
                 request()->image->storeAs('images', $filename, 'public');
             }
@@ -70,6 +72,7 @@ class ArticlesController extends Controller
     public function destroy($category, Article $article)
     {
         $this->authorize('update', $article);
+        Storage::disk('public')->delete('/images/'.$article->image);
         $article->categories()->detach();
         $article->delete();
         return redirect('/');
@@ -88,6 +91,7 @@ class ArticlesController extends Controller
         $this->authorize('update', $article);
 
         $article->categories()->detach();
+        Storage::disk('public')->delete('/images/'.$article->image);
         $article->edit(
             new Article($this->validateArticle())
         );

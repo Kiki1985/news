@@ -49,6 +49,8 @@ class Article extends Model
             'body' => $article->body,
             'image' => $article->image->getClientOriginalName()
         ]);
+        $filename = $article->image->getClientOriginalName();
+        $article->image->storeAs('images', $filename, 'public');
     }
 
     public function comments()
