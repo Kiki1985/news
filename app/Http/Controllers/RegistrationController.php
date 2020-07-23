@@ -28,32 +28,7 @@ class RegistrationController extends Controller
         if (User::where('email', $email)->exists()) {
             return redirect()->back()->with('message', 'The email address is already registrated.');
         } else {
-            request()->validate([
-                'fName' => 'required|min:3|max:25',
-                'lName' => 'required|min:3|max:25',
-                'email' => 'required|email|min:3|max:25',
-                'password' => 'required|confirmed|min:3|max:25'
-                ]);
-                    
-            $user = User::create([
-                'fName' => request('fName'),
-                'lName' => request('lName'),
-                'email' => request('email'),
-                'image' =>'noUser.png',
-                'password' => bcrypt(request('password'))
-            ]);
-
-            if($request->hasFile('image')){
-                request()->validate([
-                    'image' => 'file|image|max:5000'
-                ]);
-                    
-                $filename = request()->image->getClientOriginalName();
-                request()->image->storeAs('images', $filename, 'public');
-                $user->update([
-                    'image' => $filename
-                ]);
-            } 
+            $user = User::addUser($this->validateArticle());
             
             auth()->login($user);
             
@@ -103,5 +78,16 @@ class RegistrationController extends Controller
         User::deleteOldUsersArticlesImage();
         $user->delete();
         return redirect('/');
+    }
+
+    protected function validateArticle()
+    {
+        return request()->validate([
+            'fName' => 'required|min:3|max:25',
+            'lName' => 'required|min:3|max:25',
+            'email' => 'required|email|min:3|max:25',
+            'password' => 'required|confirmed|min:3|max:25',
+            'image' => 'sometimes|file|image|max:5000'
+            ]);
     }
 }

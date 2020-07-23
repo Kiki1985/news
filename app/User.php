@@ -89,4 +89,27 @@ class User extends Authenticatable
             Storage::disk('public')->delete('/images/'.$article->image);
         }
     }
+
+    public static function addUser($atributes)
+    {
+        $user = User::create([
+            'fName' => $atributes['fName'],
+            'lName' => $atributes['lName'],
+            'email' => $atributes['email'],
+            'image' =>'noUser.png',
+            'password' => bcrypt($atributes['password'])
+        ]);
+
+        if(array_key_exists('image', $atributes)) {
+            $filename = $atributes['image']->getClientOriginalName();
+            $atributes['image']->storeAs('images', $filename, 'public');
+            $user->update([
+                'image' => $filename
+            ]);
+        }
+        return $user;
+
+        
+        
+    }
 }
