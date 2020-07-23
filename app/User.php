@@ -52,6 +52,10 @@ class User extends Authenticatable
 
     public function publish(Article $article)
     {
+        
+        $filename = $article->image->getClientOriginalName();
+        $article->image->storeAs('images', $filename, 'public');
+            
         $this->articles()->create([
             'title' => Str::slug($article->title),
             'body' => $article->body,

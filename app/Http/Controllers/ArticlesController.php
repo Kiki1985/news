@@ -53,10 +53,6 @@ class ArticlesController extends Controller
         if (Article::where('title', $title)->exists()) {
             return back()->with('message', 'This title already exists.');
         } else {
-            if($request->hasFile('image')) {
-                $filename = request()->image->getClientOriginalName();
-                request()->image->storeAs('images', $filename, 'public');
-            }
             auth()->user()->publish(
                 new Article($this->validateArticle())
             );
@@ -81,7 +77,6 @@ class ArticlesController extends Controller
     public function edit($category, Article $article)
     {
         $this->authorize('update', $article);
-
         $categories = Category::all();
         return view('articles.edit', compact('article', 'category', 'categories'));
     }
@@ -89,7 +84,6 @@ class ArticlesController extends Controller
     public function update($category, Article $article, Request $request)
     {
         $this->authorize('update', $article);
-
         $article->categories()->detach();
         Storage::disk('public')->delete('/images/'.$article->image);
         $article->edit(

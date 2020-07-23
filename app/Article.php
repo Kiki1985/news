@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Subscriber;
 
 use App\Events\ArticleCreated;
@@ -49,6 +51,7 @@ class Article extends Model
             'body' => $article->body,
             'image' => $article->image->getClientOriginalName()
         ]);
+        
         $filename = $article->image->getClientOriginalName();
         $article->image->storeAs('images', $filename, 'public');
     }
