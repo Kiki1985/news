@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\Facades\Image;
+
 use App\Subscriber;
 
 use App\Events\ArticleCreated;
@@ -54,6 +56,8 @@ class Article extends Model
         
         $filename = $article->image->getClientOriginalName();
         $article->image->storeAs('images', $filename, 'public');
+        $image = Image::make(public_path('storage/images/'.$filename))->fit(600, 400);
+        $image->save();
     }
 
     public function comments()
