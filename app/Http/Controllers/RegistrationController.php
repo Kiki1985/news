@@ -48,26 +48,7 @@ class RegistrationController extends Controller
     public function update(User $user)
     {
         abort_unless(auth()->user()->id == $user->id, 403);
-        request()->validate([
-                'fName' => 'required|min:3|max:25',
-                'lName' => 'required|min:3|max:25',
-                'email' => 'required|email|min:3|max:25',
-                'password' => 'required|confirmed|min:3|max:25'
-                ]);
-        $user->update([
-                'fName' => request('fName'),
-                'lName' => request('lName'),
-                'password' => bcrypt(request('password')),
-                'email' => request('email'),
-                'image' => 'noUser.png',
-            ]);
-        User::deleteOldUsersImage();
-        if(request()->hasFile('image')) {
-            request()->validate([
-            'image' => 'file|image|max:5000'
-            ]);
-            User::updateProfileImage(request()->image);
-        }
+        $user->edit($this->validateArticle());
         return redirect("/");
     }
 

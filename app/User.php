@@ -108,8 +108,28 @@ class User extends Authenticatable
             ]);
         }
         return $user;
+    }
 
-        
-        
+    public function edit($atributes)
+    {
+        Storage::disk('public')->delete('/images/'.auth()->user()->image);
+        User::update([
+            'fName' => $atributes['fName'],
+            'lName' => $atributes['lName'],
+            'email' => $atributes['email'],
+            'image' =>'noUser.png',
+            'password' => bcrypt($atributes['password'])
+        ]);
+
+         if(array_key_exists('image', $atributes)) {
+            $filename = $atributes['image']->getClientOriginalName();
+            $atributes['image']->storeAs('images', $filename, 'public');
+            if(auth()->user()->image != 'noUser.png') {
+            
+            }
+            auth()->user()->update([
+                'image' => $filename
+            ]);
+        }
     }
 }
