@@ -82,6 +82,7 @@ class User extends Authenticatable
         $filename = $image->getClientOriginalName();
         $image->storeAs('images', $filename, 'public');
         auth()->user()->update(['image' => $filename]);
+        
     }
 
     protected function deleteOldUsersImage()
@@ -114,6 +115,8 @@ class User extends Authenticatable
             $user->update([
                 'image' => $filename
             ]);
+            $imageProf = Image::make(public_path('storage/images/'.$filename))->fit(75, 75);
+            $imageProf->save();
         }
         return $user;
     }
@@ -138,6 +141,8 @@ class User extends Authenticatable
             auth()->user()->update([
                 'image' => $filename
             ]);
+            $imageProf = Image::make(public_path('storage/images/'.$filename))->fit(75, 75);
+            $imageProf->save();
         }
     }
 }
